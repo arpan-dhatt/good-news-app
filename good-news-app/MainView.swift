@@ -19,8 +19,7 @@ struct MainView: View {
                     .tabItem {
                         Label("Feed", systemImage: "newspaper")
                     }
-                JournalView()
-                    .tabItem {
+                JournalView().tabItem {
                         Label("Journal", systemImage: "pencil")
                     }
                 CategoricalView()

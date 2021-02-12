@@ -12,14 +12,15 @@ class ViewModel: ObservableObject {
     
     //Transition Variables
     @Published var onboarding: Bool
-    @Published var user: InfoModel.User
+    @Published var user: InfoModel.User {
+        didSet{
+            UserDefaults.standard.set(user, forKey: "name")
+        }
+    }
     
+    //User Defaults
     init() {
-        // gets stuff from use defaults
-        
-        // if some property doesn't exist, initialize it with whatever would make sense as a default
-        
-        onboarding = false
-        user = InfoModel.User(name: "Arpan", sources: ["yes"], categories: ["one", "two"], suggestions: ["three", "four"])
+        self.onboarding = false
+        self.user = UserDefaults.standard.object(forKey: "name") as! InfoModel.User ?? InfoModel.User(name: "Arpan", sources: ["yes"], categories: ["one", "two"], suggestions: ["three", "four"])
     }
 }
