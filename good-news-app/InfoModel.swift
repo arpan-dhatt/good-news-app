@@ -9,10 +9,11 @@ import Foundation
 
 struct InfoModel {
     
-    struct user {
+    struct User {
         var name: String
-        var interests: Array<String>
-        var id = UUID()
+        var sources: Array<String>
+        var categories: Array<String>
+        var suggestions: Array<String>
     }
     
 }
