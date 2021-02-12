@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-class viewModel: ObservableObject {
+class ViewModel: ObservableObject {
     @Published var model: InfoModel = InfoModel();
     
     //Transition Variables
-    @Published var page = "login"
+    @Published var onboarding = true
     
 }

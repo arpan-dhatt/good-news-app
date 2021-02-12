@@ -15,7 +15,7 @@ struct good_news_appApp: App {
         WindowGroup {
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-            MainView().environment(\.managedObjectContext, persistenceController.container.viewContext)
+            MainView().environment(\.managedObjectContext, persistenceController.container.viewContext).environmentObject(ViewModel())
         }
     }
 }
