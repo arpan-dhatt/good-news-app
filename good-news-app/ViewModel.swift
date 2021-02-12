@@ -11,21 +11,21 @@ class ViewModel: ObservableObject {
     @Published var model: InfoModel = InfoModel();
     
     //Transition Variables
-    @Published var onboarding: Bool
-    @Published var user: InfoModel.User {
-        didSet{
-            //UserDefaults.standard.set(user, forKey: "user")
-            UserDefaults.standard.set(user.name, forKey: "name")
-            UserDefaults.standard.set(user.sources, forKey: "sources")
+    @Published var onboarding: Bool {
+        didSet {
+            UserDefaults.standard.set(onboarding, forKey: "onboarding")
         }
     }
+    @Published var user: InfoModel.User
     
     //User Defaults
     init() {
-        self.onboarding = false
+        self.onboarding = UserDefaults.standard.bool(forKey: "onboarding")
         //self.user = UserDefaults.standard.object(forKey: "user") as? InfoModel.User ??
         self.user = InfoModel.User(name: "Arpan", sources: ["yes"], categories: ["one", "two"], suggestions: ["three", "four"])
-        self.user.name = UserDefaults.standard.object(forKey: "name") as? String ?? "Arpan"
-        self.user.sources = UserDefaults.standard.object(forKey: "sources") as? [String] ?? ["heelo"]
+        self.user.name = UserDefaults.standard.string(forKey: "name") ?? "Arpan"
+        self.user.sources = (UserDefaults.standard.array(forKey: "sources") as? [String]) ?? []
+        self.user.categories = (UserDefaults.standard.array(forKey: "categories") as? [String]) ?? []
+        self.user.suggestions = (UserDefaults.standard.array(forKey: "suggestions") as? [String]) ?? []
     }
 }
