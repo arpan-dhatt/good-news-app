@@ -58,7 +58,7 @@ class ContentDataSource: ObservableObject {
       .decode(type: ArticleResponse.self, decoder: JSONDecoder())
       .receive(on: DispatchQueue.main)
       .handleEvents(receiveOutput: { response in
-        self.canLoadMorePages = true
+        self.canLoadMorePages = response.item_count == 10
         self.isLoadingPage = false
         self.currentPage += 1
       })
