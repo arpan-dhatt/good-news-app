@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E14110525D732DC00883BEB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E14110425D732DC00883BEB /* ViewModel.swift */; };
+		6E14110825D7333E00883BEB /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E14110725D7333E00883BEB /* InfoModel.swift */; };
 		784F8B7725D731B100CFC334 /* good_news_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8B7625D731B100CFC334 /* good_news_appApp.swift */; };
 		784F8B7925D731B100CFC334 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8B7825D731B100CFC334 /* ContentView.swift */; };
 		784F8B7B25D731B200CFC334 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784F8B7A25D731B200CFC334 /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6E14110425D732DC00883BEB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		6E14110725D7333E00883BEB /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
 		784F8B7325D731B100CFC334 /* good-news-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "good-news-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		784F8B7625D731B100CFC334 /* good_news_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = good_news_appApp.swift; sourceTree = "<group>"; };
 		784F8B7825D731B100CFC334 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +67,8 @@
 				784F8B8425D731B200CFC334 /* Info.plist */,
 				784F8B8125D731B200CFC334 /* good_news_app.xcdatamodeld */,
 				784F8B7C25D731B200CFC334 /* Preview Content */,
+				6E14110425D732DC00883BEB /* ViewModel.swift */,
+				6E14110725D7333E00883BEB /* InfoModel.swift */,
 			);
 			path = "good-news-app";
 			sourceTree = "<group>";
@@ -144,10 +150,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E14110525D732DC00883BEB /* ViewModel.swift in Sources */,
 				784F8B8025D731B200CFC334 /* Persistence.swift in Sources */,
 				784F8B7925D731B100CFC334 /* ContentView.swift in Sources */,
 				784F8B7725D731B100CFC334 /* good_news_appApp.swift in Sources */,
 				784F8B8325D731B200CFC334 /* good_news_app.xcdatamodeld in Sources */,
+				6E14110825D7333E00883BEB /* InfoModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
