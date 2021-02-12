@@ -24,6 +24,7 @@
 		784F8BA425D73D7E00CFC334 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BA325D73D7E00CFC334 /* ImageLoader.swift */; };
 		784F8BA625D7410500CFC334 /* FeedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BA525D7410500CFC334 /* FeedDataSource.swift */; };
 		784F8BA825D7476C00CFC334 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BA725D7476C00CFC334 /* ProfileView.swift */; };
+		784F8BAA25D74A6700CFC334 /* FeedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BA925D74A6700CFC334 /* FeedList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		784F8BA325D73D7E00CFC334 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		784F8BA525D7410500CFC334 /* FeedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDataSource.swift; sourceTree = "<group>"; };
 		784F8BA725D7476C00CFC334 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		784F8BA925D74A6700CFC334 /* FeedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				784F8BA325D73D7E00CFC334 /* ImageLoader.swift */,
 				784F8BA525D7410500CFC334 /* FeedDataSource.swift */,
 				784F8BA725D7476C00CFC334 /* ProfileView.swift */,
+				784F8BA925D74A6700CFC334 /* FeedList.swift */,
 			);
 			path = "good-news-app";
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				784F8B9B25D7355F00CFC334 /* JournalView.swift in Sources */,
 				784F8BA825D7476C00CFC334 /* ProfileView.swift in Sources */,
 				784F8B7925D731B100CFC334 /* ContentView.swift in Sources */,
+				784F8BAA25D74A6700CFC334 /* FeedList.swift in Sources */,
 				784F8B7725D731B100CFC334 /* good_news_appApp.swift in Sources */,
 				784F8B8325D731B200CFC334 /* good_news_app.xcdatamodeld in Sources */,
 				6E14110825D7333E00883BEB /* InfoModel.swift in Sources */,

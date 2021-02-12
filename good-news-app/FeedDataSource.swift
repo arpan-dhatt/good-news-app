@@ -23,7 +23,7 @@ struct ArticleResponse: Decodable {
     var items: [Article]
 }
 
-class ContentDataSource: ObservableObject {
+class FeedDataSource: ObservableObject {
   @Published var items = [Article]()
   @Published var isLoadingPage = false
   private var currentPage = 1
