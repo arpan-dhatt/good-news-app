@@ -11,9 +11,9 @@ struct InfoModel {
     
     struct User {
         var name: String
-        var sources: Array<String>
-        var categories: Array<String>
-        var suggestions: Array<String>
+        var sources: [String]
+        var categories: [String]
+        var suggestions: [String]
     }
     
 }

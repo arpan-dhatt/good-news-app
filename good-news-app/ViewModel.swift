@@ -18,5 +18,8 @@ class ViewModel: ObservableObject {
         // gets stuff from use defaults
         
         // if some property doesn't exist, initialize it with whatever would make sense as a default
+        
+        onboarding = false
+        user = InfoModel.User(name: "Arpan", sources: ["yes"], categories: ["one", "two"], suggestions: ["three", "four"])
     }
 }
