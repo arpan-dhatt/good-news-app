@@ -19,7 +19,9 @@ struct MainView: View {
                     .tabItem {
                         Label("Feed", systemImage: "newspaper")
                     }
-                JournalView().tabItem {
+                VStack{
+                    TextField("hello:", text:$viewModel.user.name)
+                }.tabItem {
                         Label("Journal", systemImage: "pencil")
                     }
                 CategoricalView()
