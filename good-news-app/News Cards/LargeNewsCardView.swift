@@ -35,11 +35,12 @@ struct LargeNewsCard: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text(title).font(.title).fixedSize(horizontal: false, vertical: true)
-                    Text(subtitle).font(.subheadline)
                     Text(date).font(.footnote).foregroundColor(.gray)
+                    Text(subtitle).font(.subheadline).padding(.vertical)
+                
                 }
                 Spacer()
-            }.padding(.horizontal)
+            }
             
         }.frame(width: UIScreen.main.bounds.width-30, height: UIScreen.main.bounds.width+70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).contextMenu {
             Button(action: {
