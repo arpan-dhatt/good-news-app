@@ -32,6 +32,7 @@ struct JournalView: View {
                             EntryView(title: title, text: text, image: UIImage(data: image) ?? UIImage(named: "Donlad")!, date: timestamp, color: allColors[Int.random(in: 0..<6)]).contextMenu {
                                 Button(action: {
                                     viewContext.delete(entry)
+                                    try? viewContext.save()
                                 }) {
                                     Label("Delete", systemImage: "x.circle")
                                 }
