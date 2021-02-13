@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 class ViewModel: ObservableObject {
     @Published var model = InfoModel();
@@ -28,4 +29,21 @@ class ViewModel: ObservableObject {
         self.user.categories = (UserDefaults.standard.array(forKey: "categories") as? [String]) ?? []
         self.user.suggestions = (UserDefaults.standard.array(forKey: "suggestions") as? [String]) ?? []
     }
+    
+    var webViewNavigationPublisher = PassthroughSubject<WebViewNavigation, Never>()
+    var showWebTitle = PassthroughSubject<String, Never>()
+    var showLoader = PassthroughSubject<Bool, Never>()
+    var valuePublisher = PassthroughSubject<String, Never>()
+    var currentMapCords = " "
+    var currentURL = "https://google.com"
 }
+
+enum WebViewNavigation {
+    case backward, forward, reload
+}
+
+// For identifying what type of url should load into WebView
+enum WebUrlType {
+    case localUrl, publicUrl
+}
+

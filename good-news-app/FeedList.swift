@@ -13,6 +13,8 @@ struct FeedList: View {
     @State var presentingSafariView = false
     @State var currentURL = "https://google.com"
     
+    @EnvironmentObject var viewModel: ViewModel
+    
     var body: some View {
         ScrollView {
             LazyVStack {
@@ -21,6 +23,7 @@ struct FeedList: View {
                         dataSource.loadMoreContentIfNeeded(currentItem: item)
                     }.onTapGesture {
                         self.currentURL = item.article
+                        viewModel.currentURL = item.article
                         print(self.currentURL)
                         self.presentingSafariView = true
                     }
@@ -30,7 +33,7 @@ struct FeedList: View {
                 }
             }
         }.sheet(isPresented: $presentingSafariView){
-            SafariView(url_string: $currentURL)
+            WebView(viewModel: ViewModel())
         }
     }
     
@@ -53,6 +56,6 @@ struct SafariView: UIViewControllerRepresentable{
 
 struct FeedList_Previews: PreviewProvider {
     static var previews: some View {
-        FeedList()
+        FeedList().environmentObject(ViewModel())
     }
 }

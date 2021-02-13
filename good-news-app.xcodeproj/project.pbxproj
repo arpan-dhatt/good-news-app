@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6E14110525D732DC00883BEB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E14110425D732DC00883BEB /* ViewModel.swift */; };
 		6E14110825D7333E00883BEB /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E14110725D7333E00883BEB /* InfoModel.swift */; };
+		6EF93A7825D7A1950099586F /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF93A7725D7A1950099586F /* WebView.swift */; };
 		784F8B7725D731B100CFC334 /* good_news_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8B7625D731B100CFC334 /* good_news_appApp.swift */; };
 		784F8B7925D731B100CFC334 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8B7825D731B100CFC334 /* ContentView.swift */; };
 		784F8B7B25D731B200CFC334 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784F8B7A25D731B200CFC334 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		6E14110425D732DC00883BEB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		6E14110725D7333E00883BEB /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
+		6EF93A7725D7A1950099586F /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		784F8B7325D731B100CFC334 /* good-news-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "good-news-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		784F8B7625D731B100CFC334 /* good_news_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = good_news_appApp.swift; sourceTree = "<group>"; };
 		784F8B7825D731B100CFC334 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				784F8BA525D7410500CFC334 /* FeedDataSource.swift */,
 				784F8BA725D7476C00CFC334 /* ProfileView.swift */,
 				784F8BA925D74A6700CFC334 /* FeedList.swift */,
+				6EF93A7725D7A1950099586F /* WebView.swift */,
 			);
 			path = "good-news-app";
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				784F8B7925D731B100CFC334 /* ContentView.swift in Sources */,
 				784F8BAA25D74A6700CFC334 /* FeedList.swift in Sources */,
 				784F8B7725D731B100CFC334 /* good_news_appApp.swift in Sources */,
+				6EF93A7825D7A1950099586F /* WebView.swift in Sources */,
 				784F8B8325D731B200CFC334 /* good_news_app.xcdatamodeld in Sources */,
 				6E14110825D7333E00883BEB /* InfoModel.swift in Sources */,
 				784F8B9A25D7355F00CFC334 /* CategoricalView.swift in Sources */,
