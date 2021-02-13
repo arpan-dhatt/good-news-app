@@ -12,7 +12,7 @@ struct Article: Decodable, Hashable {
     var title: String
     var subtitle: String
     var article: String
-//    var body: String
+    var body: String
     var date: String
     var description: String
     var thumbnail: String
@@ -88,14 +88,14 @@ class FeedDataSource: ObservableObject {
         isLoadingPage = true
         var url_obj: URL? = nil;
         if orderType == OrderType.feed {
-            url_obj = URL(string: "http://66.169.166.210:8080/recommendations?sources=\(user.sources.joined(separator: ",").filter {c in c != " "}.lowercased())&categories=\(user.categories.joined(separator: ",").filter {c in c != " "}.lowercased())&suggested=\(user.suggestions.joined(separator: ",").filter {c in c != " "}.lowercased())&page=\(currentPage)")
+            url_obj = URL(string: "http://47.37.119.216:8000/recommendations?sources=\(user.sources.joined(separator: ",").filter {c in c != " "}.lowercased())&categories=\(user.categories.joined(separator: ",").filter {c in c != " "}.lowercased())&suggested=\(user.suggestions.joined(separator: ",").filter {c in c != " "}.lowercased())&page=\(currentPage)")
             print(url_obj?.absoluteURL)
 //            url_obj = URL(string: "http://66.169.166.210:8080/recommendations?sources=ALL&categories=ALL&suggested=\(user.suggestions.joined(separator: ",").filter {c in c != " "})&page=\(currentPage)")
 //            print("http://66.169.166.210:8080/recommendations?sources=\(user.sources.joined(separator: ",").filter {c in c != " "})&categories=\(user.categories.joined(separator: ",").filter {c in c != " "})&suggested=\(user.suggestions.joined(separator: ",").filter {c in c != " "})&page=\(currentPage)")
 //            url_obj = URL(string: "http://66.169.166.210:8080/categorical?sources=n,n&category=n,n&page=\(currentPage)")
         }
         else {
-            url_obj = URL(string: "http://66.169.166.210:8080/categorical?sources=\(user.sources.joined(separator: ",").filter {c in c != " "}.lowercased())&category=sports&page=\(currentPage)")
+            url_obj = URL(string: "http://47.37.119.216:8000/categorical?sources=\(user.sources.joined(separator: ",").filter {c in c != " "}.lowercased())&category=sports&page=\(currentPage)")
             print(url_obj?.absoluteURL)
 //            url_obj = URL(string: "http://66.169.166.210:8080/categorical?sources=n,n&category=n,n&page=\(currentPage)")
         }
