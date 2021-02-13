@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var viewModel: ViewModel
+    let yellow = UIColor(red: 254,green: 188,blue: 47, alpha: 1)
     
     var body: some View {
         NavigationView {
@@ -31,7 +32,7 @@ struct ProfileView: View {
                     }
                         Divider()
                     StringListModifierView(choices: ["World","Business","SciTech", "Sports"], choice: .categories)
-                    }.font(.headline).background(Color.orange).cornerRadius(10.0).foregroundColor(.white).padding()
+                    }.font(.headline).background(Color("purple1")).cornerRadius(10.0).foregroundColor(.white).padding()
                     
                     VStack{
                     HStack{
