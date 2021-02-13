@@ -1,25 +1,27 @@
 //
-//  FeedList.swift
+//  CategoryList.swift
 //  good-news-app
 //
-//  Created by Arpan Dhatt on 2/12/21.
+//  Created by Arpan Dhatt on 2/13/21.
 //
 
 import SwiftUI
 
-struct FeedList: View {
+struct CategoryList: View {
     @EnvironmentObject var viewModel: ViewModel
     
-    @StateObject var dataSource = FeedDataSource(.feed)
+    @StateObject var dataSource = FeedDataSource(.categorical)
     @State var presentingSafariView = false
     @State var currentURL = "https://bing.com"
+    
+    var category: String
     
     var body: some View {
         ScrollView {
             LazyVStack {
                 ForEach(dataSource.items, id: \.self) { item in
                     BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource).onAppear {
-                        dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
+                        dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user, category: category)
                     }.onTapGesture {
                         self.currentURL = item.article
                         viewModel.currentURL = item.article
@@ -38,8 +40,8 @@ struct FeedList: View {
     
 }
 
-struct FeedList_Previews: PreviewProvider {
+struct CategoryList_Previews: PreviewProvider {
     static var previews: some View {
-        FeedList().environmentObject(ViewModel())
+        CategoryList(category: "one")
     }
 }

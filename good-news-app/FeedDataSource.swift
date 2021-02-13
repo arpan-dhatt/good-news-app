@@ -24,6 +24,11 @@ struct ArticleResponse: Decodable {
     var items: [Article]
 }
 
+enum OrderType {
+    case feed
+    case categorical
+}
+
 class FeedDataSource: ObservableObject {
     
     @Published var items = [Article]()
@@ -32,14 +37,16 @@ class FeedDataSource: ObservableObject {
     
     private var currentPage = 0
     private var canLoadMorePages = true
+    private var orderType: OrderType;
     
-    init() {
-        loadMoreContent(user: ViewModel().user)
+    init(_ type: OrderType, category: String = "") {
+        orderType = type
+        loadMoreContent(user: ViewModel().user, category: category)
     }
     
-    func loadMoreContentIfNeeded(currentItem item: Article?, user: InfoModel.User) {
+    func loadMoreContentIfNeeded(currentItem item: Article?, user: InfoModel.User, category: String = "") {
         guard let item = item else {
-            loadMoreContent(user: user)
+            loadMoreContent(user: user, category: category)
             return
         }
 
@@ -65,14 +72,20 @@ class FeedDataSource: ObservableObject {
         }
     }
     
-    private func loadMoreContent(user: InfoModel.User) {
+    private func loadMoreContent(user: InfoModel.User, category: String = "") {
         guard !isLoadingPage && canLoadMorePages else {
             return
         }
 
         isLoadingPage = true
-
-        let url = URL(string: "http://66.169.166.210:8080/recommendations?sources=\(user.sources.joined(separator: ","))&categories=\(user.categories.joined(separator: ","))&suggested=\(user.suggestions.joined(separator: ","))&page=\(currentPage)")!
+        var url: URL? = nil;
+        if orderType == OrderType.feed {
+            url = URL(string: "http://66.169.166.210:8080/recommendations?sources=\(user.sources.joined(separator: ","))&categories=\(user.categories.joined(separator: ","))&suggested=\(user.suggestions.joined(separator: ","))&page=\(currentPage)")
+        }
+        else {
+            url = URL(string: "http://66.169.166.210:8080/categorical?sources=\(user.sources.joined(separator: ","))&category=\(user.categories.joined(separator: ","))&page=\(currentPage)")
+        }
+        guard let url = url else { return }
         URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
           .decode(type: ArticleResponse.self, decoder: JSONDecoder())

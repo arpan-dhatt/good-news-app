@@ -27,6 +27,7 @@
 		784F8BA825D7476C00CFC334 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BA725D7476C00CFC334 /* ProfileView.swift */; };
 		784F8BAA25D74A6700CFC334 /* FeedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BA925D74A6700CFC334 /* FeedList.swift */; };
 		784F8BAC25D7AACA00CFC334 /* LargeNewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BAB25D7AACA00CFC334 /* LargeNewsCardView.swift */; };
+		784F8BB025D7B8BC00CFC334 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BAF25D7B8BC00CFC334 /* CategoryList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		784F8BA725D7476C00CFC334 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		784F8BA925D74A6700CFC334 /* FeedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedList.swift; sourceTree = "<group>"; };
 		784F8BAB25D7AACA00CFC334 /* LargeNewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeNewsCardView.swift; sourceTree = "<group>"; };
+		784F8BAF25D7B8BC00CFC334 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				784F8BA725D7476C00CFC334 /* ProfileView.swift */,
 				784F8BA925D74A6700CFC334 /* FeedList.swift */,
 				6EF93A7725D7A1950099586F /* WebView.swift */,
+				784F8BAF25D7B8BC00CFC334 /* CategoryList.swift */,
 			);
 			path = "good-news-app";
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				6EF93A7825D7A1950099586F /* WebView.swift in Sources */,
 				784F8B8325D731B200CFC334 /* good_news_app.xcdatamodeld in Sources */,
 				6E14110825D7333E00883BEB /* InfoModel.swift in Sources */,
+				784F8BB025D7B8BC00CFC334 /* CategoryList.swift in Sources */,
 				784F8B9A25D7355F00CFC334 /* CategoricalView.swift in Sources */,
 				784F8B9F25D7365800CFC334 /* OnboardingView.swift in Sources */,
 				784F8BA425D73D7E00CFC334 /* ImageLoader.swift in Sources */,
