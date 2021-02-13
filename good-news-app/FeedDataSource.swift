@@ -35,6 +35,8 @@ class FeedDataSource: ObservableObject {
     @Published var imageDict = [String: UIImage]()
     @Published var isLoadingPage = false
     
+    @Published var isBig = [Bool]()
+    
     private var currentPage = 0
     private var canLoadMorePages = true
     private var orderType: OrderType;
@@ -100,6 +102,7 @@ class FeedDataSource: ObservableObject {
             self.currentPage += 1
             for item in response.items {
                 self.addImageToDict(item.thumbnail)
+                self.isBig.append(Int.random(in: 0...100) > 60)
             }
           })
           .map({ response in

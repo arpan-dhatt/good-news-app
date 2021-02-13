@@ -29,7 +29,7 @@ struct FeedList: View {
         ScrollView {
             LazyVStack {
                 ForEach(dataSource.items, id: \.self) { item in
-                    if Int.random(in: 0...100)>20 {
+                    if !dataSource.isBig[dataSource.items.firstIndex(of: item) ?? 0] {
                         BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, activeSheet: $activeSheet).onAppear {
                             dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
                         }.onTapGesture {
