@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import SwiftUI
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -16,6 +17,12 @@ struct PersistenceController {
         for _ in 0..<10 {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
+            let newEntry = JournalPage(context: viewContext)
+            newEntry.text = "da"
+            newEntry.title = "sdaf"
+            newEntry.id = UUID()
+            newEntry.image = UIImage(named: "donlad")?.jpegData(compressionQuality: 1.0)
+            newEntry.timestamp = Date()
         }
         do {
             try viewContext.save()
