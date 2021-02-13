@@ -12,7 +12,7 @@ struct CategoricalView: View {
     
     @State private var showProfileView = false
     
-    var allColors = [Color.green, Color.purple, Color.orange, Color.pink, Color.blue, Color.red, Color.black, Color.green, Color.purple, Color.orange, Color.pink, Color.blue, Color.red, Color.black]
+    var allColors = [Color("red1"), Color("blue1"), Color("purple1"), Color("orange1"), Color.blue, Color.red, Color.black, Color.green, Color.purple, Color.orange, Color.pink, Color.blue, Color.red, Color.black]
     
     var body: some View {
         NavigationView {

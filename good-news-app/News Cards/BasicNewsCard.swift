@@ -23,10 +23,10 @@ struct BasicNewsCard: View {
     @ObservedObject var dataSource: FeedDataSource
     
     var allColors = [
-        "sports": Color.green,
-        "world": Color.purple,
-        "business": Color.orange,
-        "scitech": Color.pink
+        "sports": Color("blue1"),
+        "world": Color("purple1"),
+        "business": Color("orange1"),
+        "scitech": Color("red1")
     ]
     
     @Binding var activeSheet: ActiveSheet?
