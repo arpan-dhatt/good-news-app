@@ -14,12 +14,33 @@ struct ProfileView: View {
         NavigationView {
             VStack {
                 ScrollView {
-                    Divider()
-                    Text("Visible Categories").font(.title)
+                    VStack{
+                        HStack{
+                            Text("Name:").font(.title2).bold()
+                            Spacer()
+                            Image(systemName: "pencil.circle.fill").font(.title)
+                        }.padding([.top,.leading, .trailing])
+                        Divider()
+                        TextField("", text: $viewModel.user.name).padding([.bottom,.leading, .trailing])
+                        
+                    }.background(Color.blue).cornerRadius(10.0).foregroundColor(.white).padding()
+                    VStack{
+                    HStack{
+                        Text("Selected Categories").font(.title2).bold().padding()
+                        Spacer()
+                    }
+                        Divider()
                     StringListModifierView(choices: ["World","Business","SciTech", "Sports"], choice: .categories)
-                    Divider()
-                    Text("Visible Sources").font(.title)
+                    }.font(.headline).background(Color.orange).cornerRadius(10.0).foregroundColor(.white).padding()
+                    
+                    VStack{
+                    HStack{
+                        Text("Selected Sources").font(.title2).bold().padding()
+                        Spacer()
+                    }
+                        Divider()
                     StringListModifierView(choices: ["Default", "NY Times", "BBC", "Washington Post", "Time", "Aljazeera", "NPR", "LA Times"], choice: .sources)
+                    }.font(.headline).background(Color.purple).cornerRadius(10.0).foregroundColor(.white).padding()
                 }
             }.navigationBarTitle("Profile")
         }
