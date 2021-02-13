@@ -59,7 +59,6 @@ class FeedDataSource: ObservableObject {
       .decode(type: ArticleResponse.self, decoder: JSONDecoder())
       .receive(on: DispatchQueue.main)
       .handleEvents(receiveOutput: { response in
-        print(response)
         self.canLoadMorePages = response.item_count == 10
         self.isLoadingPage = false
         self.currentPage += 1
