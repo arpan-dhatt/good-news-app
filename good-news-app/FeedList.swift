@@ -30,16 +30,26 @@ struct FeedList: View {
             LazyVStack {
                 ForEach(dataSource.items, id: \.self) { item in
                     if true {
-                        BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, activeSheet: $activeSheet).onAppear {
-                            dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
-                        }.onTapGesture {
-                            self.activeSheet = .web
-                            self.currentURL = item.article
-                            print(item.article)
-                            viewModel.currentURL = item.article
-                            print(self.currentURL)
-                            
+                        NavigationLink(
+                            destination: ArticleView(title: item.title, date: item.date, summary: item.subtitle, text: item.subtitle, thumbnail: dataSource.imageDict[item.thumbnail] ?? UIImage(named:"Donlad")!)) {
+                            BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, activeSheet: $activeSheet).onAppear {
+                                dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
+                            }
+                        }.contextMenu {
+                            Button(action: {
+                                viewModel.sharingURL = item.article
+                                activeSheet = .share
+                            }, label: {
+                                Label("Share", systemImage: "square.and.arrow.up")
+                            })
                         }
+//                        .onTapGesture {
+//                            self.activeSheet = .web
+//                            self.currentURL = item.article
+//                            print(item.article)
+//                            viewModel.currentURL = item.article
+//                            print(self.currentURL)
+//                        }
                     } else {
                         LargeNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, activeSheet: $activeSheet).onAppear {
                             dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
@@ -54,9 +64,7 @@ struct FeedList: View {
                 if dataSource.isLoadingPage {
                     ProgressView()
                 }
-            }.sheet(isPresented: $presentingShareView, content: {
-                ShareSheetView(applicationActivities: nil)
-            })
+            }
         }.sheet(item: $activeSheet){ item in
             if activeSheet == .share {
                 ShareSheetView(applicationActivities: nil)

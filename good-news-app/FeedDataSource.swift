@@ -47,6 +47,11 @@ class FeedDataSource: ObservableObject {
         loadMoreContent(user: ViewModel().user, category: category)
     }
     
+    func resetContent(category: String = "") {
+        items = [Article]()
+        loadMoreContent(user: ViewModel().user, category: category)
+    }
+    
     func loadMoreContentIfNeeded(currentItem item: Article?, user: InfoModel.User, category: String = "") {
         guard let item = item else {
             loadMoreContent(user: user, category: category)

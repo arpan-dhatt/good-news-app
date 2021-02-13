@@ -21,20 +21,33 @@ struct CategoryList: View {
         ScrollView {
             LazyVStack {
                 ForEach(dataSource.items, id: \.self) { item in
-                    BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, activeSheet: $activeSheet).onAppear {
-                        dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user, category: category)
-                    }.onTapGesture {
-                        self.currentURL = item.article
-                        viewModel.currentURL = item.article
-                        print(self.currentURL)
-                        self.activeSheet = .web
+                    NavigationLink(
+                        destination: ArticleView(title: item.title, date: item.date, summary: item.subtitle, text: item.subtitle, thumbnail: dataSource.imageDict[item.thumbnail] ?? UIImage(named:"Donlad")!)) {
+                        BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, activeSheet: $activeSheet).onAppear {
+                            dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
+                        }
+                    }.contextMenu {
+                        Button(action: {
+                            viewModel.sharingURL = item.article
+                            activeSheet = .share
+                        }, label: {
+                            Label("Share", systemImage: "square.and.arrow.up")
+                        })
                     }
+//                    BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, activeSheet: $activeSheet).onAppear {
+//                        dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user, category: category)
+//                    }.onTapGesture {
+//                        self.currentURL = item.article
+//                        viewModel.currentURL = item.article
+//                        print(self.currentURL)
+//                        self.activeSheet = .web
+//                    }
                 }
                 if dataSource.isLoadingPage {
                     ProgressView()
                 }
             }
-        }.sheet(item: $activeSheet){ item in
+        }.sheet(item: $activeSheet, onDismiss: { dataSource.resetContent() }){ item in
             if activeSheet == .share {
                 ShareSheetView(applicationActivities: nil)
             }
