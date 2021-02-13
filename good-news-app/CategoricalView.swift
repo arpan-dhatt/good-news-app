@@ -12,12 +12,16 @@ struct CategoricalView: View {
     
     @State private var showProfileView = false
     
+    var allColors = [Color.black, Color.gray, Color.purple, Color.orange, Color.pink, Color.blue]
+    
     var body: some View {
         NavigationView {
             List {
                 ForEach(viewModel.user.categories, id: \.self) {category in
                     NavigationLink(destination: CategoryList(category: category).navigationBarTitle(category)) {
-                        Text("\(category)")
+                        VStack{
+                            Text("\(category)").font(.title).bold().padding()
+                        }.font(.headline).background(Color.orange).cornerRadius(10.0).foregroundColor(.white).padding()
                     }
                 }
             }.navigationBarTitle("Categories")
@@ -27,6 +31,6 @@ struct CategoricalView: View {
 
 struct CategoricalView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoricalView()
+        CategoricalView().environmentObject(ViewModel())
     }
 }
