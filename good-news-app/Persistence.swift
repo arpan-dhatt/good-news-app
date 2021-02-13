@@ -14,12 +14,12 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
+        for _ in 0..<3 {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
             let newEntry = JournalPage(context: viewContext)
-            newEntry.text = "da"
-            newEntry.title = "sdaf"
+            newEntry.text = "da asd a fdas asd asd as fasdf asdfa sfasd fasd a"
+            newEntry.title = "Sadness"
             newEntry.id = UUID()
             newEntry.image = UIImage(named: "Donlad")?.jpegData(compressionQuality: 1.0)
             newEntry.timestamp = Date()

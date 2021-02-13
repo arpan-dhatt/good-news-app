@@ -22,23 +22,72 @@ struct JournalView: View {
             NavigationView{
                 
                 VStack{
-                    List{
-                        ForEach(entries) { entry in
-                            Text("hello" + entry.text!)
-                            Image(uiImage: UIImage(data: entry.image!)!)
-                        }
-                    }.navigationTitle("My Entries")
+                    ScrollView{
+                    ForEach(entries) { entry in
+                        EntryView(title: entry.title!, text: entry.text!, image: UIImage(data: entry.image!)!, date: entry.timestamp!)
+                    }
+                    }
                     
                     Button(action: {
                         showNewSheet = true
                     }, label: {
                         Text("Add Entry")
                     })
-                }
+                }.navigationTitle("My Entries")
             }.sheet(isPresented: $showNewSheet, content: {
                 OrderSheet()
             })
         }
+    }
+}
+
+struct EntryView: View {
+    var title: String
+    var text: String
+    var image: UIImage
+    var date: Date
+    
+    static let DateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter
+    }()
+    
+    static let DateFormat2: DateFormatter = {
+        let formatter2 = DateFormatter()
+        formatter2.timeStyle = .short
+        return formatter2
+    }()
+    
+    var body: some View {
+   
+        ZStack{
+            RoundedRectangle(cornerRadius: 10).foregroundColor(.purple).shadow(radius: 10)
+            
+            VStack(alignment: .center){
+                
+                    VStack{
+                        VStack{
+                            HStack{
+                                Text(title).font(.title).bold()
+                                Spacer()
+                            }
+                            HStack{
+                                Text("\(date, formatter: Self.DateFormat), \(date, formatter: Self.DateFormat2)").font(.caption)
+                                Spacer()
+                            }
+                        }.padding(.bottom)
+                        HStack{
+                            Text(text).font(.subheadline)
+                            Spacer()
+                        }
+                        
+                    }.padding()
+                    Spacer()
+                Image(uiImage: image).resizable().scaledToFill().cornerRadius(10.0)
+                
+            }.foregroundColor(.white)
+        }.padding()
     }
 }
 
@@ -106,45 +155,45 @@ struct OrderSheet: View {
 }
 
 struct ImagePicker: UIViewControllerRepresentable {
-  
-  @Binding var image: UIImage?
-  @Binding var isShown: Bool
-  
-  func makeCoordinator() -> Coordinator {
-    return Coordinator(isShown: $isShown, image: $image)
-  }
-  
-  func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
-    let picker = UIImagePickerController()
-    picker.delegate = context.coordinator
-    return picker
-  }
-  
-  func updateUIViewController(_ uiViewController: UIImagePickerController,
-                              context: UIViewControllerRepresentableContext<ImagePicker>) {
-    
-  }
-  
-  class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @Binding var image: UIImage?
     @Binding var isShown: Bool
     
-    init(isShown: Binding<Bool>, image: Binding<UIImage?>) {
-      _isShown = isShown
-      _image = image
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(isShown: $isShown, image: $image)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-      image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-      isShown.toggle()
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.delegate = context.coordinator
+        return picker
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-      isShown.toggle()
+    func updateUIViewController(_ uiViewController: UIImagePickerController,
+                                context: UIViewControllerRepresentableContext<ImagePicker>) {
+        
     }
-  }
+    
+    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+        
+        @Binding var image: UIImage?
+        @Binding var isShown: Bool
+        
+        init(isShown: Binding<Bool>, image: Binding<UIImage?>) {
+            _isShown = isShown
+            _image = image
+        }
+        
+        func imagePickerController(_ picker: UIImagePickerController,
+                                   didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+            isShown.toggle()
+        }
+        
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            isShown.toggle()
+        }
+    }
 }
 
 struct JournalView_Previews: PreviewProvider {
