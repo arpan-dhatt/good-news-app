@@ -51,10 +51,14 @@ class FeedDataSource: ObservableObject {
         let url = URL(string: url_string)
         
         if let urlu = url {
-            if let data = try? Data(contentsOf: urlu) {
-                if !imageDict.keys.contains(url_string) {
-                    imageDict[url_string] = UIImage(data: data)
+            if !imageDict.keys.contains(url_string) {
+                let task = URLSession.shared.dataTask(with: urlu) { data, response, error in
+                    guard let data = data else { return }
+                    DispatchQueue.main.async {
+                        self.imageDict[url_string] = UIImage(data: data)
+                    }
                 }
+                task.resume()
             }
         }
     }
