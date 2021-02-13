@@ -17,6 +17,7 @@ class ViewModel: ObservableObject {
             UserDefaults.standard.set(onboarding, forKey: "onboarding")
         }
     }
+    @Published var onboardingPage: String = "1"
     @Published var user: InfoModel.User
     @Published var sharingURL: String
     
