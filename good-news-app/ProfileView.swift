@@ -19,7 +19,7 @@ struct ProfileView: View {
                     StringListModifierView(choices: ["World","Business","SciTech", "Sports"], choice: .categories)
                     Divider()
                     Text("Visible Sources").font(.title)
-                    StringListModifierView(choices: ["Good News Network", "New York Times"], choice: .sources)
+                    StringListModifierView(choices: ["Default", "NY Times", "BBC", "Washington Post", "Time", "Aljazeera", "NPR", "LA Times"], choice: .sources)
                 }
             }.navigationBarTitle("Profile")
         }
