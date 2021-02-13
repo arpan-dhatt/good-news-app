@@ -11,6 +11,7 @@ import Combine
 struct Article: Decodable, Hashable {
     var title: String
     var subtitle: String
+    var article: String
     var date: String
     var description: String
     var thumbnail: String
