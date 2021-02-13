@@ -22,13 +22,16 @@ struct LargeNewsCard: View {
         VStack {
             Image(uiImage: dataSource.imageDict[thumbnail] ?? UIImage(named: "Donlad")!)
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width:UIScreen.main.bounds.width-30, height:UIScreen.main.bounds.width-30)
+                .aspectRatio(contentMode: .fill)
+                .frame(width:UIScreen.main.bounds.width-30, height:UIScreen.main.bounds.width-30).cornerRadius(10.0)
+                .padding(.vertical)
+                .shadow(radius: 5.0)
             
             VStack(alignment: .leading) {
-                Text(title).font(.headline)
-                Text(subtitle).font(.subheadline)
-                Text(date).font(.footnote).foregroundColor(.gray)
+                Text(title).font(.headline).bold()
+                Text(date).font(.footnote).font(.caption).foregroundColor(.gray)
+                Text(subtitle).font(.subheadline).padding(.vertical)
+                
             }
             
         }.frame(width: UIScreen.main.bounds.width-30, height: UIScreen.main.bounds.width+70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
