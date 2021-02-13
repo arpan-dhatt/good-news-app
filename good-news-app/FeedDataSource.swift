@@ -25,25 +25,27 @@ struct ArticleResponse: Decodable {
 }
 
 class FeedDataSource: ObservableObject {
+    
     @Published var items = [Article]()
     @Published var imageDict = [String: UIImage]()
     @Published var isLoadingPage = false
+    
     private var currentPage = 0
     private var canLoadMorePages = true
-
+    
     init() {
-        loadMoreContent()
+        loadMoreContent(user: ViewModel().user)
     }
-
-    func loadMoreContentIfNeeded(currentItem item: Article?) {
+    
+    func loadMoreContentIfNeeded(currentItem item: Article?, user: InfoModel.User) {
         guard let item = item else {
-            loadMoreContent()
+            loadMoreContent(user: user)
             return
         }
 
         let thresholdIndex = items.index(items.endIndex, offsetBy: -1)
         if items.firstIndex(where: { $0.uuid == item.uuid }) == thresholdIndex {
-          loadMoreContent()
+            loadMoreContent(user: user)
         }
     }
     
@@ -63,14 +65,14 @@ class FeedDataSource: ObservableObject {
         }
     }
     
-    private func loadMoreContent() {
+    private func loadMoreContent(user: InfoModel.User) {
         guard !isLoadingPage && canLoadMorePages else {
             return
         }
 
         isLoadingPage = true
 
-        let url = URL(string: "http://66.169.166.210:8080/recommendations?sources=nytimes&categories=one,two&suggested=three,four&page=\(currentPage)")!
+        let url = URL(string: "http://66.169.166.210:8080/recommendations?sources=\(user.sources.joined(separator: ","))&categories=\(user.categories.joined(separator: ","))&suggested=\(user.suggestions.joined(separator: ","))&page=\(currentPage)")!
         URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
           .decode(type: ArticleResponse.self, decoder: JSONDecoder())

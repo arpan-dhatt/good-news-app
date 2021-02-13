@@ -9,18 +9,18 @@ import SwiftUI
 import SafariServices
 
 struct FeedList: View {
+    @EnvironmentObject var viewModel: ViewModel
+    
     @StateObject var dataSource = FeedDataSource()
     @State var presentingSafariView = false
-    @State var currentURL = "https://google.com"
-    
-    @EnvironmentObject var viewModel: ViewModel
+    @State var currentURL = "https://bing.com"
     
     var body: some View {
         ScrollView {
             LazyVStack {
                 ForEach(dataSource.items, id: \.self) { item in
                     BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource).onAppear {
-                        dataSource.loadMoreContentIfNeeded(currentItem: item)
+                        dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
                     }.onTapGesture {
                         self.currentURL = item.article
                         viewModel.currentURL = item.article
