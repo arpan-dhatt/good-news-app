@@ -36,8 +36,7 @@ struct LargeNewsCard: View {
                 VStack(alignment: .leading) {
                     Text(title).font(.title).fixedSize(horizontal: false, vertical: true)
                     Text(date).font(.footnote).foregroundColor(.gray)
-                    Text(subtitle).font(.subheadline).padding(.vertical)
-                
+                    Text(subtitle).font(.subheadline)
                 }
                 Spacer()
             }
