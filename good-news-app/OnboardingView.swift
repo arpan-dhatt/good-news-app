@@ -15,7 +15,9 @@ struct OnboardingView: View {
             OnboardingIntroView()
         }
         if viewModel.onboardingPage == "2"{
+            withAnimation{
             OnboardingNameView()
+            }
         }
         if viewModel.onboardingPage == "3"{
             OnboardingSourcesView()
@@ -46,7 +48,9 @@ struct OnboardingSourcesView: View{
             
             HStack{
                 Button(action: {
+                    withAnimation{
                     viewModel.onboardingPage = "2"
+                    }
                 }){
                     HStack{
                     Image(systemName: "arrow.left").font(.body)
@@ -55,8 +59,10 @@ struct OnboardingSourcesView: View{
                 }
                 Spacer()
                 Button(action: {
+                    withAnimation {
                     viewModel.onboarding = false
                     viewModel.onboardingPage = "1"
+                    }
                 }){
                     HStack{
                     Text("Ready?").font(.body)
@@ -99,7 +105,9 @@ struct OnboardingNameView: View{
             
             HStack{
                 Button(action: {
+                    withAnimation {
                     viewModel.onboardingPage = "1"
+                    }
                 }){
                     HStack{
                     Image(systemName: "arrow.left").font(.body)
@@ -108,7 +116,9 @@ struct OnboardingNameView: View{
                 }
                 Spacer()
                 Button(action: {
+                    withAnimation {
                     viewModel.onboardingPage = "3"
+                    }
                 }){
                     HStack{
                     Text("Next").font(.body)
@@ -147,7 +157,9 @@ struct OnboardingIntroView: View {
             HStack{
                 Spacer()
                 Button(action: {
+                    withAnimation{
                     viewModel.onboardingPage = "2"
+                    }
                 }){
                     HStack{
                     Text("Get Started").font(.body)
