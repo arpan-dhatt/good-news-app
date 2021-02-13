@@ -19,9 +19,8 @@ struct MainView: View {
                     .tabItem {
                         Label("Feed", systemImage: "newspaper")
                     }
-                VStack{
-                    TextField("hello:", text:$viewModel.user.name)
-                }.tabItem {
+                JournalView()
+                    .tabItem {
                         Label("Journal", systemImage: "pencil")
                     }
                 CategoricalView()
@@ -29,7 +28,6 @@ struct MainView: View {
                         Label("Categories", systemImage: "folder")
                     }
             }
-
         }
     }
 }
