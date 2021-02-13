@@ -54,7 +54,7 @@ class FeedDataSource: ObservableObject {
 
         let thresholdIndex = items.index(items.endIndex, offsetBy: -1)
         if items.firstIndex(where: { $0.uuid == item.uuid }) == thresholdIndex {
-            loadMoreContent(user: user)
+            loadMoreContent(user: user, category: category)
         }
     }
     
@@ -82,13 +82,14 @@ class FeedDataSource: ObservableObject {
         isLoadingPage = true
         var url_obj: URL? = nil;
         if orderType == OrderType.feed {
-            url_obj = URL(string: "http://66.169.166.210:8080/recommendations?sources=\(user.sources.joined(separator: ",").filter {c in c != " "}.lowercased())&categories=\(user.categories.joined(separator: ",").filter {c in c != " "}.lowercased())&suggested=\(user.suggestions.joined(separator: ",").filter {c in c != " "}.lowercased())&page=\(currentPage)")
+            url_obj = URL(string: "http://47.37.119.216:8000/recommendations?sources=\(user.sources.joined(separator: ",").filter {c in c != " "}.lowercased())&categories=\(user.categories.joined(separator: ",").filter {c in c != " "}.lowercased())&suggested=\(user.suggestions.joined(separator: ",").filter {c in c != " "}.lowercased())&page=\(currentPage)")
+            print(url_obj?.absoluteURL)
 //            url_obj = URL(string: "http://66.169.166.210:8080/recommendations?sources=ALL&categories=ALL&suggested=\(user.suggestions.joined(separator: ",").filter {c in c != " "})&page=\(currentPage)")
 //            print("http://66.169.166.210:8080/recommendations?sources=\(user.sources.joined(separator: ",").filter {c in c != " "})&categories=\(user.categories.joined(separator: ",").filter {c in c != " "})&suggested=\(user.suggestions.joined(separator: ",").filter {c in c != " "})&page=\(currentPage)")
 //            url_obj = URL(string: "http://66.169.166.210:8080/categorical?sources=n,n&category=n,n&page=\(currentPage)")
         }
         else {
-            url_obj = URL(string: "http://66.169.166.210:8080/categorical?sources=\(user.sources.joined(separator: ",").filter {c in c != " "}.lowercased())&category=\(user.categories.joined(separator: ",").filter {c in c != " "}.lowercased())&page=\(currentPage)")
+            url_obj = URL(string: "http://47.37.119.216:8000/categorical?sources=\(user.sources.joined(separator: ",").filter {c in c != " "}.lowercased())&category=\(category.lowercased())&page=\(currentPage)")
             print(url_obj?.absoluteURL)
 //            url_obj = URL(string: "http://66.169.166.210:8080/categorical?sources=n,n&category=n,n&page=\(currentPage)")
         }
