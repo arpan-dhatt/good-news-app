@@ -39,7 +39,9 @@ struct OrderSheet: View {
                     }
                     
                     if pickedImage != nil {
-                        Image(uiImage: pickedImage!).resizable().scaledToFill().padding()
+                        Section(header: Text("Your Selected Image")){
+                        Image(uiImage: pickedImage!).resizable().scaledToFit().cornerRadius(10.0).padding()
+                        }
                     }
                     
                     Button(action:{
@@ -64,7 +66,13 @@ struct OrderSheet: View {
                             print(error.localizedDescription)
                         }
                     }){
-                        Text("Add Entry")
+                        HStack{
+                            
+                            Text("Add Entry").padding()
+                            Spacer()
+                            Image(systemName: "plus.app.fill").font(.system(size:30, weight: .light))
+                            
+                        }
                     }
                 }.navigationBarTitle("Add Entry").sheet(isPresented: $showImagePicker, onDismiss: {self.showImagePicker = false}, content: {
                     ImagePicker(image: $pickedImage, isShown: $showImagePicker)
