@@ -1,0 +1,63 @@
+{
+    "default": ["https://www.goodnewsnetwork.org/category/news/health/feed",
+                "https://www.goodnewsnetwork.org/category/news/business/feed",
+                "https://www.goodnewsnetwork.org/category/news/world/feed",
+                "https://www.goodnewsnetwork.org/category/news/animals/feed",
+                "https://www.goodnewsnetwork.org/category/news/science/feed",
+                "https://www.goodnewsnetwork.org/category/news/inspiring/feed",
+                "https://www.goodnewsnetwork.org/category/news/sports/feed",
+                "https://www.goodnewsnetwork.org/category/news/celebrities/feed"],
+
+    "nytimes": ["https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+                "https://rss.nytimes.com/services/xml/rss/nyt/Arts.xml",
+                "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml",
+                "https://rss.nytimes.com/services/xml/rss/nyt/Sports.xml",
+                "https://rss.nytimes.com/services/xml/rss/nyt/Science.xml",
+                "https://rss.nytimes.com/services/xml/rss/nyt/Health.xml",
+                "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml"],
+
+    "bbc": ["http://feeds.bbci.co.uk/news/world/rss.xml",
+            "http://feeds.bbci.co.uk/news/business/rss.xml",
+            "http://feeds.bbci.co.uk/news/politics/rss.xml",
+            "http://feeds.bbci.co.uk/news/health/rss.xml",
+            "http://feeds.bbci.co.uk/news/education/rss.xml",
+            "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+            "http://feeds.bbci.co.uk/news/technology/rss.xml",
+            "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml"],
+
+    "washingtonpost": ["http://feeds.washingtonpost.com/rss/world",
+                       "http://feeds.washingtonpost.com/rss/business",
+                       "http://feeds.washingtonpost.com/rss/politics",
+                       "http://feeds.washingtonpost.com/rss/entertainment",
+                       "http://feeds.washingtonpost.com/rss/sports",
+                       "http://feeds.washingtonpost.com/rss/local"],
+
+    "time": ["https://time.com/feed/"],
+
+    "aljazeera": ["https://www.aljazeera.com/xml/rss/all.xml"],
+
+    "npr": ["https://feeds.npr.org/1004/rss.xml"],
+
+    "espn": ["https://www.espn.com/espn/rss/nfl/news",
+             "https://www.espn.com/espn/rss/nba/news",
+             "https://www.espn.com/espn/rss/mlb/news",
+             "https://www.espn.com/espn/rss/nhl/news",
+             "https://www.espn.com/espn/rss/soccer/news"],
+
+    "quartz": ["https://cms.qz.com/feed/"],
+
+    "gizmodo": ["https://gizmodo.com/rss"],
+
+    "wired": ["https://www.wired.com/rss/"],
+
+    "space.com": ["https://www.space.com/feeds/all"],
+
+    "cnbc": ["https://www.cnbc.com/id/100727362/device/rss/rss.html",
+             "https://www.cnbc.com/id/15837362/device/rss/rss.html",
+             "https://www.cnbc.com/id/10001147/device/rss/rss.html",
+             "https://www.cnbc.com/id/19854910/device/rss/rss.html",
+             "https://www.cnbc.com/id/10000113/device/rss/rss.html",
+             "https://www.cnbc.com/id/10000739/device/rss/rss.html",
+             "https://www.cnbc.com/id/10000101/device/rss/rss.html"
+             ]
+}
