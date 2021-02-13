@@ -28,6 +28,7 @@
 		784F8BAA25D74A6700CFC334 /* FeedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BA925D74A6700CFC334 /* FeedList.swift */; };
 		784F8BAC25D7AACA00CFC334 /* LargeNewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BAB25D7AACA00CFC334 /* LargeNewsCardView.swift */; };
 		784F8BB025D7B8BC00CFC334 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BAF25D7B8BC00CFC334 /* CategoryList.swift */; };
+		784F8BB225D7C3E800CFC334 /* ListModifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BB125D7C3E800CFC334 /* ListModifierView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		784F8BA925D74A6700CFC334 /* FeedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedList.swift; sourceTree = "<group>"; };
 		784F8BAB25D7AACA00CFC334 /* LargeNewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeNewsCardView.swift; sourceTree = "<group>"; };
 		784F8BAF25D7B8BC00CFC334 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
+		784F8BB125D7C3E800CFC334 /* ListModifierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModifierView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				784F8BA925D74A6700CFC334 /* FeedList.swift */,
 				6EF93A7725D7A1950099586F /* WebView.swift */,
 				784F8BAF25D7B8BC00CFC334 /* CategoryList.swift */,
+				784F8BB125D7C3E800CFC334 /* ListModifierView.swift */,
 			);
 			path = "good-news-app";
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				784F8B9D25D7355F00CFC334 /* FeedView.swift in Sources */,
 				6E14110525D732DC00883BEB /* ViewModel.swift in Sources */,
 				784F8B9C25D7355F00CFC334 /* MainView.swift in Sources */,
+				784F8BB225D7C3E800CFC334 /* ListModifierView.swift in Sources */,
 				784F8BAC25D7AACA00CFC334 /* LargeNewsCardView.swift in Sources */,
 				784F8BA225D73B1300CFC334 /* BasicNewsCard.swift in Sources */,
 				784F8BA625D7410500CFC334 /* FeedDataSource.swift in Sources */,
