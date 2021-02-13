@@ -34,6 +34,7 @@ struct FeedList: View {
                             dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
                         }.onTapGesture {
                             self.currentURL = item.article
+                            print(item.article)
                             viewModel.currentURL = item.article
                             print(self.currentURL)
                             self.activeSheet = .web
