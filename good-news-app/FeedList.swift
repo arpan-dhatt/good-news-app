@@ -33,11 +33,12 @@ struct FeedList: View {
                         BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, activeSheet: $activeSheet).onAppear {
                             dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
                         }.onTapGesture {
+                            self.activeSheet = .web
                             self.currentURL = item.article
                             print(item.article)
                             viewModel.currentURL = item.article
                             print(self.currentURL)
-                            self.activeSheet = .web
+                            
                         }
                     } else {
                         LargeNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, activeSheet: $activeSheet).onAppear {
