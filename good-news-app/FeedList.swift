@@ -27,12 +27,12 @@ struct FeedList: View {
     
     var body: some View {
         ScrollView {
-            LazyVStack {
+            LazyVStack(spacing: 20) {
                 
                 ForEach(dataSource.items, id: \.self) { item in
                     if true {
                         NavigationLink(
-                            destination: ArticleView(title: item.title, date: item.date, summary: item.subtitle, text: item.subtitle, thumbnail: dataSource.imageDict[item.thumbnail] ?? UIImage(named:"Donlad")!)) {
+                            destination: ArticleView(title: item.title, date: item.date, summary: item.subtitle, text: item.body, thumbnail: dataSource.imageDict[item.thumbnail] ?? UIImage(named:"Donlad")!)) {
                             BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, activeSheet: $activeSheet).onAppear {
                                 dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
                             }

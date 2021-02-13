@@ -19,7 +19,7 @@ struct ArticleView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                Image(uiImage: thumbnail).resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                Image(uiImage: thumbnail).resizable().aspectRatio(contentMode: .fit)
                 Text(title).font(.title).padding(.horizontal)
                 Text(date).font(.caption).padding(.horizontal)
                 Text(summary).font(.headline).padding(.horizontal)

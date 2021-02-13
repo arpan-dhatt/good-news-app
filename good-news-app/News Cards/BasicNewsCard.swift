@@ -36,14 +36,13 @@ struct BasicNewsCard: View {
             VStack(alignment: .leading) {
                 Text(title).font(.headline).foregroundColor(allColors[categories[0].lowercased()] ?? .black)
                 Text(date).font(.footnote).foregroundColor(.gray)
-            }.padding(.leading)
+            }
             Spacer()
             Image(uiImage: dataSource.imageDict[thumbnail] ?? UIImage(named: "Donlad")!)
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .cornerRadius(10)
-                .frame(width:150, height:150)
-        }.frame(width: UIScreen.main.bounds.width-30, height: 110, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .aspectRatio(contentMode: .fill)
+                .frame(width:180, height:180).clipped().cornerRadius(10)
+        }.frame(width: UIScreen.main.bounds.width-30, height: 180, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
     }
 }
 
