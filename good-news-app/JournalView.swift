@@ -11,34 +11,40 @@ struct JournalView: View {
     @State var showNewSheet = false
     
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.colorScheme) var colorScheme
     
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \JournalPage.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \JournalPage.timestamp, ascending: false)],
         animation: .default)
     private var entries: FetchedResults<JournalPage>
     
     var body: some View {
         ZStack{
             NavigationView{
-                
                 VStack{
                     ScrollView{
                     ForEach(entries) { entry in
-                        EntryView(title: entry.title!, text: entry.text!, image: UIImage(data: entry.image!)!, date: entry.timestamp!)
+                        if let title = entry.title, let text = entry.text, let image = entry.image, let timestamp = entry.timestamp {
+                            EntryView(title: title, text: text, image: UIImage(data: image) ?? UIImage(named: "Donlad")!, date: timestamp)
+                        }
                     }
-                    }
-                    
-                    Button(action: {
+                    }.navigationBarTitle("My Journal").navigationBarItems(trailing: Button(action: {
                         showNewSheet = true
-                    }, label: {
-                        Text("Add Entry")
+                    }) {
+                        Image(systemName: "plus.circle.fill")
                     })
-                }.navigationTitle("My Entries")
+                }.background(Image((colorScheme == .light) ? "day-mountains" : "night-forest").resizable().aspectRatio(contentMode: .fill).ignoresSafeArea())
             }.sheet(isPresented: $showNewSheet, content: {
                 OrderSheet()
             })
         }
     }
+}
+
+struct VisualEffectView: UIViewRepresentable {
+    var effect: UIVisualEffect?
+    func makeUIView(context: UIViewRepresentableContext<Self>) -> UIVisualEffectView { UIVisualEffectView() }
+    func updateUIView(_ uiView: UIVisualEffectView, context: UIViewRepresentableContext<Self>) { uiView.effect = effect }
 }
 
 struct EntryView: View {
@@ -62,8 +68,8 @@ struct EntryView: View {
     var body: some View {
    
         ZStack{
-            RoundedRectangle(cornerRadius: 10).foregroundColor(.purple).shadow(radius: 10)
-            
+            //RoundedRectangle(cornerRadius: 10).foregroundColor(.purple).shadow(radius: 10)//
+            VisualEffectView(effect: UIBlurEffect(style: .regular)).cornerRadius(10).shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/).edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             VStack(alignment: .center){
                 
                     VStack{
@@ -86,113 +92,8 @@ struct EntryView: View {
                     Spacer()
                 Image(uiImage: image).resizable().scaledToFill().cornerRadius(10.0)
                 
-            }.foregroundColor(.white)
-        }.padding()
-    }
-}
-
-struct OrderSheet: View {
-    @State var showImagePicker = false
-    @State var pickedImage: UIImage? = nil
-    
-    @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.presentationMode) var presentationMode
-    
-    @State var entryText = ""
-    @State var entryTitle = ""
-    @State var entryImage = ""
-    
-    var body: some View {
-        ZStack{
-            NavigationView{
-                Form{
-                    Section(header: Text("Title")){
-                        TextField("Title", text: $entryTitle)
-                    }
-                    Section(header: Text("Content")){
-                        TextField("Content", text: $entryText)
-                    }
-                    Section(header: Text("Select Image")){
-                        Button(action: {self.showImagePicker.toggle()}, label: {
-                            HStack{
-                                Spacer()
-                                Text("Pick Image")
-                                Spacer()
-                            }
-                        })
-                    }
-                    
-                    Button(action:{
-                        let newEntry = JournalPage(context: viewContext)
-                        newEntry.title = self.entryTitle
-                        newEntry.text = self.entryText
-                        if pickedImage != nil {
-                            newEntry.image = pickedImage?.jpegData(compressionQuality: 1.0)
-                        }
-                        else{
-                            newEntry.image = UIImage(named: "Donlad")?.jpegData(compressionQuality: 1.0)
-                        }
-                        newEntry.timestamp = Date()
-                        newEntry.id = UUID()
-                        
-                        do{
-                            try viewContext.save()
-                            print("added success")
-                            presentationMode.wrappedValue.dismiss()
-                        }
-                        catch{
-                            print(error.localizedDescription)
-                        }
-                    }){
-                        Text("Add Entry")
-                    }
-                }.navigationBarTitle("Add Entry").sheet(isPresented: $showImagePicker, onDismiss: {self.showImagePicker = false}, content: {
-                    ImagePicker(image: $pickedImage, isShown: $showImagePicker)
-                })
             }
-        }
-    }
-}
-
-struct ImagePicker: UIViewControllerRepresentable {
-    
-    @Binding var image: UIImage?
-    @Binding var isShown: Bool
-    
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(isShown: $isShown, image: $image)
-    }
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.delegate = context.coordinator
-        return picker
-    }
-    
-    func updateUIViewController(_ uiViewController: UIImagePickerController,
-                                context: UIViewControllerRepresentableContext<ImagePicker>) {
-        
-    }
-    
-    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        
-        @Binding var image: UIImage?
-        @Binding var isShown: Bool
-        
-        init(isShown: Binding<Bool>, image: Binding<UIImage?>) {
-            _isShown = isShown
-            _image = image
-        }
-        
-        func imagePickerController(_ picker: UIImagePickerController,
-                                   didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-            isShown.toggle()
-        }
-        
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            isShown.toggle()
-        }
+        }.padding()
     }
 }
 
