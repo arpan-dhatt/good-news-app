@@ -29,7 +29,12 @@ struct JournalView: View {
                     ScrollView{
                     ForEach(entries) { entry in
                         if let title = entry.title, let text = entry.text, let image = entry.image, let timestamp = entry.timestamp {
-                            EntryView(title: title, text: text, image: UIImage(data: image) ?? UIImage(named: "Donlad")!, date: timestamp, color: allColors[Int.random(in: 0..<6)])
+                            EntryView(title: title, text: text, image: UIImage(data: image) ?? UIImage(named: "Donlad")!, date: timestamp, color: allColors[Int.random(in: 0..<6)]).contextMenu {
+                                Button(action: {
+                                    viewContext.delete(entry)
+                                }) {
+                                    Label("Delete", systemImage: "x.circle")
+                                }
                         }
                     }
                     }.navigationBarTitle("My Journal")
@@ -37,7 +42,7 @@ struct JournalView: View {
             }.sheet(isPresented: $showNewSheet, content: {
                 OrderSheet()
             })
-
+        }
             VStack{
                 Spacer()
                 HStack{
@@ -46,13 +51,12 @@ struct JournalView: View {
                         showNewSheet = true
                     }){
                         Image(systemName: "plus").font(.system(size:40, weight: .light))
-                    }.padding().background(Color.green).foregroundColor(.white).cornerRadius(50.0).shadow(radius: 10.0)
+                    }.padding().background(Color.green).foregroundColor(.white).cornerRadius(75.0).shadow(radius: 10.0)
                     
                 }.padding()
             }
-            
-        }
     }
+}
 }
 
 struct VisualEffectView: UIViewRepresentable {
@@ -104,7 +108,7 @@ struct EntryView: View {
                         }
                         
                     }.padding()
-                    Spacer()
+                    
                 Image(uiImage: image).resizable().scaledToFit().cornerRadius(10.0).padding()
                 
             }.foregroundColor(.white)
