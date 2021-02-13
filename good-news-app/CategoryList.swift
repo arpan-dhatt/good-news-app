@@ -25,7 +25,6 @@ struct CategoryList: View {
                         dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user, category: category)
                     }.onTapGesture {
                         self.currentURL = item.article
-                        viewModel.currentURL = item.article
                         print(self.currentURL)
                         self.activeSheet = .web
                     }
