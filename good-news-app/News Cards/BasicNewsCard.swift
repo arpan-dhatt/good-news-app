@@ -28,7 +28,6 @@ struct BasicNewsCard: View {
         HStack {
             VStack(alignment: .leading) {
                 Text(title).font(.headline)
-                Text(subtitle).font(.subheadline)
                 Text(date).font(.footnote).foregroundColor(.gray)
             }.padding(.leading)
             Spacer()
@@ -36,7 +35,7 @@ struct BasicNewsCard: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(10)
-                .frame(width:100, height:100)
+                .frame(width:150, height:150)
         }.frame(width: UIScreen.main.bounds.width-30, height: 110, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).contextMenu {
             Button(action: {
                     print("do something")
