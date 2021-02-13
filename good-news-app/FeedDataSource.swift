@@ -11,6 +11,7 @@ import Combine
 struct Article: Decodable, Hashable {
     var title: String
     var subtitle: String
+    var article: String
     var date: String
     var description: String
     var thumbnail: String
@@ -58,7 +59,6 @@ class FeedDataSource: ObservableObject {
       .decode(type: ArticleResponse.self, decoder: JSONDecoder())
       .receive(on: DispatchQueue.main)
       .handleEvents(receiveOutput: { response in
-        print(response)
         self.canLoadMorePages = response.item_count == 10
         self.isLoadingPage = false
         self.currentPage += 1

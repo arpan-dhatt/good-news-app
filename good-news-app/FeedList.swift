@@ -14,7 +14,7 @@ struct FeedList: View {
         ScrollView {
             LazyVStack {
                 ForEach(dataSource.items, id: \.self) { item in
-                    BasicNewsCard(title: item.title, subtitle: item.subtitle, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories).onAppear {
+                    BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories).onAppear {
                         dataSource.loadMoreContentIfNeeded(currentItem: item)
                     }
                 }
