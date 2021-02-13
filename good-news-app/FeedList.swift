@@ -28,6 +28,7 @@ struct FeedList: View {
     var body: some View {
         ScrollView {
             LazyVStack {
+                
                 ForEach(dataSource.items, id: \.self) { item in
                     if true {
                         NavigationLink(
