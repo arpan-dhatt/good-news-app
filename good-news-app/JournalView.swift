@@ -88,7 +88,6 @@ struct EntryView: View {
    
         ZStack{
             RoundedRectangle(cornerRadius: 10).foregroundColor(color).shadow(radius: 10)
-            //VisualEffectView(effect: UIBlurEffect(style: .regular)).cornerRadius(10).shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/).edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             VStack(alignment: .center){
                 
                     VStack{
@@ -109,7 +108,7 @@ struct EntryView: View {
                         
                     }.padding()
                     
-                Image(uiImage: image).resizable().scaledToFit().cornerRadius(10.0).padding()
+                Image(uiImage: image).resizable().aspectRatio(contentMode: .fill).cornerRadius(10.0).padding()
                 
             }.foregroundColor(.white)
         }.padding()

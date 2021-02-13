@@ -21,12 +21,13 @@ struct OrderSheet: View {
     var body: some View {
         ZStack{
             NavigationView{
+                
                 Form{
                     Section(header: Text("Title")){
-                        TextField("Title", text: $entryTitle)
+                        TextField("", text: $entryTitle)
                     }
                     Section(header: Text("Content")){
-                        TextField("Content", text: $entryText)
+                        TextEditor(text: $entryText)
                     }
                     Section(header: Text("Select Image")){
                         Button(action: {self.showImagePicker.toggle()}, label: {
@@ -77,8 +78,10 @@ struct OrderSheet: View {
                 }.navigationBarTitle("Add Entry").sheet(isPresented: $showImagePicker, onDismiss: {self.showImagePicker = false}, content: {
                     ImagePicker(image: $pickedImage, isShown: $showImagePicker)
                 })
+                    
             }
         }
+        
     }
 }
 
