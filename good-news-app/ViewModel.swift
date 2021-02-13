@@ -40,7 +40,7 @@ class ViewModel: ObservableObject {
     var showLoader = PassthroughSubject<Bool, Never>()
     var valuePublisher = PassthroughSubject<String, Never>()
     var currentMapCords = " "
-    var currentURL = "https://google.com"
+    @Published var currentURL = "https://gmail.com"
 }
 
 enum WebViewNavigation {
