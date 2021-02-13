@@ -77,7 +77,12 @@ struct OrderSheet: View {
                         let newEntry = JournalPage(context: viewContext)
                         newEntry.title = self.entryTitle
                         newEntry.text = self.entryText
-                        newEntry.image = UIImage(named: "Donlad")?.jpegData(compressionQuality: 1.0)
+                        if pickedImage != nil {
+                            newEntry.image = pickedImage?.jpegData(compressionQuality: 1.0)
+                        }
+                        else{
+                            newEntry.image = UIImage(named: "Donlad")?.jpegData(compressionQuality: 1.0)
+                        }
                         newEntry.timestamp = Date()
                         newEntry.id = UUID()
                         
