@@ -22,7 +22,7 @@ struct BasicNewsCard: View {
     
     @ObservedObject var dataSource: FeedDataSource
     
-    @Binding var presentingShareView: Bool
+    @Binding var activeSheet: ActiveSheet?
     
     var body: some View {
         HStack {
@@ -45,7 +45,7 @@ struct BasicNewsCard: View {
             }
             Button(action: {
                 viewModel.sharingURL = article
-                presentingShareView.toggle()
+                activeSheet = .share
             }, label: {
                 Label("Share", systemImage: "square.and.arrow.up")
             })
@@ -55,6 +55,6 @@ struct BasicNewsCard: View {
 
 struct BasicNewsCard_Previews: PreviewProvider {
     static var previews: some View {
-        BasicNewsCard(title: "Just in, a title found a title in a tree", subtitle: "A subtitle didn't want to help the subtitle stuck in a subtitle", article: "https://google.com", date: "Feb 12, 2021", description: "Terrible news about the atrocious crimes against the cat in the tree", thumbnail: "https://rustacean.net/assets/cuddlyferris.png", categories: ["one","two","three"], dataSource: FeedDataSource(.feed), presentingShareView: .constant(false))
+        BasicNewsCard(title: "Just in, a title found a title in a tree", subtitle: "A subtitle didn't want to help the subtitle stuck in a subtitle", article: "https://google.com", date: "Feb 12, 2021", description: "Terrible news about the atrocious crimes against the cat in the tree", thumbnail: "https://rustacean.net/assets/cuddlyferris.png", categories: ["one","two","three"], dataSource: FeedDataSource(.feed), activeSheet: .constant(.none))
     }
 }
