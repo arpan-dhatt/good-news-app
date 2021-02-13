@@ -37,7 +37,7 @@ struct BasicNewsCard: View {
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(10)
                 .frame(width:100, height:100)
-        }.frame(width: UIScreen.main.bounds.width-30, height: 110, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).background(colorScheme == .light ? Color.white : Color.black).contextMenu {
+        }.frame(width: UIScreen.main.bounds.width-30, height: 110, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).contextMenu {
             Button(action: {
                     print("do something")
             }) {
@@ -49,7 +49,7 @@ struct BasicNewsCard: View {
             }, label: {
                 Label("Share", systemImage: "square.and.arrow.up")
             })
-        }.cornerRadius(10).shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+        }
     }
 }
 

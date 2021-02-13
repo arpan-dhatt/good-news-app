@@ -30,13 +30,16 @@ struct LargeNewsCard: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width:UIScreen.main.bounds.width-30, height:UIScreen.main.bounds.width-30)
             
-            VStack(alignment: .leading) {
-                Text(title).font(.headline)
-                Text(subtitle).font(.subheadline)
-                Text(date).font(.footnote).foregroundColor(.gray)
-            }
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(title).font(.title).fixedSize(horizontal: false, vertical: true)
+                    Text(subtitle).font(.subheadline)
+                    Text(date).font(.footnote).foregroundColor(.gray)
+                }
+                Spacer()
+            }.padding(.horizontal)
             
-        }.frame(width: UIScreen.main.bounds.width-30, height: UIScreen.main.bounds.width+70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).background(colorScheme == .light ? Color.white : Color.black).contextMenu {
+        }.frame(width: UIScreen.main.bounds.width-30, height: UIScreen.main.bounds.width+70, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).contextMenu {
             Button(action: {
                     print("do something")
             }) {
@@ -48,12 +51,12 @@ struct LargeNewsCard: View {
             }, label: {
                 Label("Share", systemImage: "square.and.arrow.up")
             })
-        }.cornerRadius(10).shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+        }
     }
 }
 
 struct LargeNewsCard_Previews: PreviewProvider {
     static var previews: some View {
-        LargeNewsCard(title: "Just in, a title found a title in a tree", subtitle: "A subtitle didn't want to help the subtitle stuck in a subtitle", article: "https://google.com", date: "Feb 12, 2021", description: "Terrible news about the atrocious crimes against the cat in the tree", thumbnail: "https://rustacean.net/assets/cuddlyferris.png", categories: ["one","two","three"], dataSource: FeedDataSource(.feed), activeSheet: .constant(nil))
+        LargeNewsCard(title: "Just in, a ", subtitle: "A subtitle ", article: "https://google.com", date: "Feb 12, 2021", description: "Terrible news about the atrocious crimes against the cat in the tree", thumbnail: "https://rustacean.net/assets/cuddlyferris.png", categories: ["one","two","three"], dataSource: FeedDataSource(.feed), activeSheet: .constant(nil))
     }
 }
