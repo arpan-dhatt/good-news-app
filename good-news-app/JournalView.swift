@@ -18,25 +18,39 @@ struct JournalView: View {
         animation: .default)
     private var entries: FetchedResults<JournalPage>
     
+    var allColors = [Color.black, Color.gray, Color.purple, Color.orange, Color.pink, Color.blue]
+    
     var body: some View {
         ZStack{
+            
+            
             NavigationView{
                 VStack{
                     ScrollView{
                     ForEach(entries) { entry in
                         if let title = entry.title, let text = entry.text, let image = entry.image, let timestamp = entry.timestamp {
-                            EntryView(title: title, text: text, image: UIImage(data: image) ?? UIImage(named: "Donlad")!, date: timestamp)
+                            EntryView(title: title, text: text, image: UIImage(data: image) ?? UIImage(named: "Donlad")!, date: timestamp, color: allColors[Int.random(in: 0..<6)])
                         }
                     }
-                    }.navigationBarTitle("My Journal").navigationBarItems(trailing: Button(action: {
-                        showNewSheet = true
-                    }) {
-                        Image(systemName: "plus.circle.fill")
-                    })
-                }.background(Image((colorScheme == .light) ? "day-mountains" : "night-forest").resizable().aspectRatio(contentMode: .fill).ignoresSafeArea())
+                    }.navigationBarTitle("My Journal")
+                }
             }.sheet(isPresented: $showNewSheet, content: {
                 OrderSheet()
             })
+
+            VStack{
+                Spacer()
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        showNewSheet = true
+                    }){
+                        Image(systemName: "plus").font(.system(size:40, weight: .light))
+                    }.padding().background(Color.green).foregroundColor(.white).cornerRadius(50.0).shadow(radius: 10.0)
+                    
+                }.padding()
+            }
+            
         }
     }
 }
@@ -52,6 +66,7 @@ struct EntryView: View {
     var text: String
     var image: UIImage
     var date: Date
+    var color: Color
     
     static let DateFormat: DateFormatter = {
         let formatter = DateFormatter()
@@ -68,8 +83,8 @@ struct EntryView: View {
     var body: some View {
    
         ZStack{
-            //RoundedRectangle(cornerRadius: 10).foregroundColor(.purple).shadow(radius: 10)//
-            VisualEffectView(effect: UIBlurEffect(style: .regular)).cornerRadius(10).shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/).edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            RoundedRectangle(cornerRadius: 10).foregroundColor(color).shadow(radius: 10)
+            //VisualEffectView(effect: UIBlurEffect(style: .regular)).cornerRadius(10).shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/).edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             VStack(alignment: .center){
                 
                     VStack{
@@ -90,9 +105,9 @@ struct EntryView: View {
                         
                     }.padding()
                     Spacer()
-                Image(uiImage: image).resizable().scaledToFill().cornerRadius(10.0)
+                Image(uiImage: image).resizable().scaledToFit().cornerRadius(10.0).padding()
                 
-            }
+            }.foregroundColor(.white)
         }.padding()
     }
 }
