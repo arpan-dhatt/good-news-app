@@ -29,13 +29,24 @@ struct FeedList: View {
         ScrollView {
             LazyVStack {
                 ForEach(dataSource.items, id: \.self) { item in
-                    BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, activeSheet: $activeSheet).onAppear {
-                        dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
-                    }.onTapGesture {
-                        self.currentURL = item.article
-                        viewModel.currentURL = item.article
-                        print(self.currentURL)
-                        self.activeSheet = .web
+                    if Int.random(in: 0...100)>20 {
+                        BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, activeSheet: $activeSheet).onAppear {
+                            dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
+                        }.onTapGesture {
+                            self.currentURL = item.article
+                            viewModel.currentURL = item.article
+                            print(self.currentURL)
+                            self.activeSheet = .web
+                        }
+                    } else {
+                        LargeNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, activeSheet: $activeSheet).onAppear {
+                            dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
+                        }.onTapGesture {
+                            self.currentURL = item.article
+                            viewModel.currentURL = item.article
+                            print(self.currentURL)
+                            self.activeSheet = .web
+                        }
                     }
                 }
                 if dataSource.isLoadingPage {
