@@ -20,18 +20,23 @@ struct JournalView: View {
     var body: some View {
         ZStack{
             NavigationView{
-                List{
-                    ForEach(entries) { entry in
-                        Text("hello" + entry.text!)
-                    }
-                }.navigationTitle("My Entries").navigationBarItems(trailing: Button(action: {
-                    showNewSheet = true
-                }, label: {
-                    Image(systemName: "plus.circle").imageScale(.large)
-                })).sheet(isPresented: $showNewSheet, content: {
-                    OrderSheet()
-                })
-            }
+                
+                VStack{
+                    List{
+                        ForEach(entries) { entry in
+                            Text("hello" + entry.text!)
+                        }
+                    }.navigationTitle("My Entries")
+                    
+                    Button(action: {
+                        showNewSheet = true
+                    }, label: {
+                        Text("Add Entry")
+                    })
+                }
+            }.sheet(isPresented: $showNewSheet, content: {
+                OrderSheet()
+            })
         }
     }
 }
