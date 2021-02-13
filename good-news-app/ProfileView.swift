@@ -14,12 +14,11 @@ struct ProfileView: View {
         NavigationView {
             VStack {
                 ScrollView {
-                    Text("\(viewModel.user.name)").font(.title)
                     Divider()
-                    Text("Visible Categories").font(.headline)
-                    StringListModifierView(choices: ["Business","Sports","Weather"], choice: .categories)
+                    Text("Visible Categories").font(.title)
+                    StringListModifierView(choices: ["World","Business","SciTech", "Sports"], choice: .categories)
                     Divider()
-                    Text("Visible Sources").font(.headline)
+                    Text("Visible Sources").font(.title)
                     StringListModifierView(choices: ["Good News Network", "New York Times"], choice: .sources)
                 }
             }.navigationBarTitle("Profile")

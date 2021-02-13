@@ -32,7 +32,7 @@ struct StringListModifierView: View {
                             Image(systemName: viewModel.user.sources.contains(item) ? "minus.circle.fill" : "plus.circle.fill").foregroundColor(viewModel.user.sources.contains(item) ? Color.red : Color.green).transition(.scale)
                         }
                         
-                    }.padding().background(colorScheme == .light ? Color.white : Color.black).cornerRadius(10).padding(.horizontal, 4).shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
+                    }.padding().padding(.horizontal, 4)
                     .onTapGesture {
                         withAnimation(.interpolatingSpring(stiffness: 0.1, damping: 0.1)) {
                             if choice == .categories {
