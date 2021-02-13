@@ -78,14 +78,14 @@ class FeedDataSource: ObservableObject {
         }
 
         isLoadingPage = true
-        var url: URL? = nil;
+        var url_obj: URL? = nil;
         if orderType == OrderType.feed {
-            url = URL(string: "http://66.169.166.210:8080/recommendations?sources=\(user.sources.joined(separator: ","))&categories=\(user.categories.joined(separator: ","))&suggested=\(user.suggestions.joined(separator: ","))&page=\(currentPage)")
+            url_obj = URL(string: "http://66.169.166.210:8080/recommendations?sources=\(user.sources.joined(separator: ","))&categories=\(user.categories.joined(separator: ","))&suggested=\(user.suggestions.joined(separator: ","))&page=\(currentPage)")
         }
         else {
-            url = URL(string: "http://66.169.166.210:8080/categorical?sources=\(user.sources.joined(separator: ","))&category=\(user.categories.joined(separator: ","))&page=\(currentPage)")
+            url_obj = URL(string: "http://66.169.166.210:8080/categorical?sources=\(user.sources.joined(separator: ","))&category=\(user.categories.joined(separator: ","))&page=\(currentPage)")
         }
-        guard let url = url else { return }
+        guard let url = url_obj else { return }
         URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
           .decode(type: ArticleResponse.self, decoder: JSONDecoder())
