@@ -25,6 +25,7 @@ struct JournalView: View {
                     List{
                         ForEach(entries) { entry in
                             Text("hello" + entry.text!)
+                            Image(uiImage: UIImage(data: entry.image!)!)
                         }
                     }.navigationTitle("My Entries")
                     
@@ -76,7 +77,7 @@ struct OrderSheet: View {
                         let newEntry = JournalPage(context: viewContext)
                         newEntry.title = self.entryTitle
                         newEntry.text = self.entryText
-                        newEntry.image = UIImage(named: "donlad")?.jpegData(compressionQuality: 1.0)
+                        newEntry.image = UIImage(named: "Donlad")?.jpegData(compressionQuality: 1.0)
                         newEntry.timestamp = Date()
                         newEntry.id = UUID()
                         

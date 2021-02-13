@@ -21,7 +21,7 @@ struct PersistenceController {
             newEntry.text = "da"
             newEntry.title = "sdaf"
             newEntry.id = UUID()
-            newEntry.image = UIImage(named: "donlad")?.jpegData(compressionQuality: 1.0)
+            newEntry.image = UIImage(named: "Donlad")?.jpegData(compressionQuality: 1.0)
             newEntry.timestamp = Date()
         }
         do {
