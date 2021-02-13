@@ -32,18 +32,18 @@ struct OnboardingSourcesView: View{
         VStack{
             ScrollView{
             HStack{
-                Text("Almost Done!").font(.title2)
+                Text("Almost Done!").font(.title2).bold()
                 Spacer()
             }.padding()
             
             VStack{
             HStack{
-                Text("Selected Some Prefered News Networks").font(.title2).bold().padding()
+                Text("Selected Some Prefered News Networks").font(.title).bold().padding()
                 Spacer()
             }
                 Divider()
             StringListModifierView(choices: ["Default", "NY Times", "BBC", "Washington Post", "Time", "Aljazeera", "NPR", "LA Times"], choice: .sources)
-            }.font(.headline).background(Color.purple).cornerRadius(10.0).foregroundColor(.white).padding()
+            }.font(.headline).background(Color("purple1")).cornerRadius(10.0).foregroundColor(.white).padding()
             }
             
             HStack{
@@ -55,7 +55,7 @@ struct OnboardingSourcesView: View{
                     HStack{
                     Image(systemName: "arrow.left").font(.body)
                     Text("Back").font(.body)
-                    }.padding().background(Color.green).foregroundColor(Color.white).cornerRadius(5.0)
+                    }.padding().background(Color("red1")).foregroundColor(Color.white).cornerRadius(5.0)
                 }
                 Spacer()
                 Button(action: {
@@ -67,7 +67,7 @@ struct OnboardingSourcesView: View{
                     HStack{
                     Text("Ready?").font(.body)
                         Image(systemName: "arrow.right").font(.body)
-                    }.padding().background(Color.green).foregroundColor(Color.white).cornerRadius(5.0)
+                    }.padding().background(Color("red1")).foregroundColor(Color.white).cornerRadius(5.0)
                 }
                 
             }.padding()
@@ -99,9 +99,9 @@ struct OnboardingNameView: View{
                 }
                     Divider()
                 StringListModifierView(choices: ["World","Business","SciTech", "Sports"], choice: .categories)
-                }.font(.headline).background(Color.orange).cornerRadius(10.0).foregroundColor(.white).padding()
+                }.font(.headline).background(Color("yellow1")).cornerRadius(10.0).foregroundColor(.black).padding()
                 
-            }.background(Color.blue).cornerRadius(10.0).foregroundColor(.white).padding()
+            }.background(Color("blue1")).cornerRadius(10.0).foregroundColor(.white).padding()
             
             HStack{
                 Button(action: {
@@ -112,7 +112,7 @@ struct OnboardingNameView: View{
                     HStack{
                     Image(systemName: "arrow.left").font(.body)
                     Text("Back").font(.body)
-                    }.padding().background(Color.green).foregroundColor(Color.white).cornerRadius(5.0)
+                    }.padding().background(Color("red1")).foregroundColor(Color.white).cornerRadius(5.0)
                 }
                 Spacer()
                 Button(action: {
@@ -123,7 +123,7 @@ struct OnboardingNameView: View{
                     HStack{
                     Text("Next").font(.body)
                         Image(systemName: "arrow.right").font(.body)
-                    }.padding().background(Color.green).foregroundColor(Color.white).cornerRadius(5.0)
+                    }.padding().background(Color("red1")).foregroundColor(Color.white).cornerRadius(5.0)
                 }
                 
             }.padding()
@@ -164,7 +164,7 @@ struct OnboardingIntroView: View {
                     HStack{
                     Text("Get Started").font(.body)
                         Image(systemName: "arrow.right").font(.body)
-                    }.padding().background(Color.green).foregroundColor(Color.white).cornerRadius(5.0)
+                    }.padding().background(Color("red1")).foregroundColor(Color.white).cornerRadius(5.0)
                 }
                 
             }

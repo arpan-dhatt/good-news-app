@@ -24,7 +24,7 @@ struct ProfileView: View {
                         Divider()
                         TextField("", text: $viewModel.user.name).padding([.bottom,.leading, .trailing])
                         
-                    }.background(Color.blue).cornerRadius(10.0).foregroundColor(.white).padding()
+                    }.background(Color("blue1")).cornerRadius(10.0).foregroundColor(.white).padding()
                     VStack{
                     HStack{
                         Text("Selected Categories").font(.title2).bold().padding()
@@ -41,7 +41,7 @@ struct ProfileView: View {
                     }
                         Divider()
                     StringListModifierView(choices: ["Default", "NY Times", "BBC", "Washington Post", "Time", "Aljazeera", "NPR", "LA Times"], choice: .sources)
-                    }.font(.headline).background(Color.purple).cornerRadius(10.0).foregroundColor(.white).padding()
+                    }.font(.headline).background(Color("yellow1")).cornerRadius(10.0).foregroundColor(.black).padding()
                 }
             }.navigationBarTitle("Profile")
         }
