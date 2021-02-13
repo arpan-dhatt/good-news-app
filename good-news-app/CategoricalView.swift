@@ -12,16 +12,16 @@ struct CategoricalView: View {
     
     @State private var showProfileView = false
     
-    var allColors = [Color.black, Color.gray, Color.purple, Color.orange, Color.pink, Color.blue]
+    var allColors = [Color.green, Color.purple, Color.orange, Color.pink, Color.blue, Color.red, Color.black, Color.green, Color.purple, Color.orange, Color.pink, Color.blue, Color.red, Color.black]
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.user.categories, id: \.self) {category in
+                ForEach(Array(viewModel.user.categories.enumerated()).map({$0}), id: \.element) {index, category in
                     NavigationLink(destination: CategoryList(category: category).navigationBarTitle(category)) {
                         VStack{
                             Text("\(category)").font(.title).bold().padding()
-                        }.font(.headline).background(Color.orange).cornerRadius(10.0).foregroundColor(.white).padding()
+                        }.font(.headline).background(allColors[index]).cornerRadius(10.0).foregroundColor(.white).padding()
                     }
                 }
             }.navigationBarTitle("Categories")
