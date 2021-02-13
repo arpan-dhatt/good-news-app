@@ -32,6 +32,7 @@ struct JournalView: View {
                             EntryView(title: title, text: text, image: UIImage(data: image) ?? UIImage(named: "Donlad")!, date: timestamp, color: allColors[Int.random(in: 0..<6)]).contextMenu {
                                 Button(action: {
                                     viewContext.delete(entry)
+                                    try? viewContext.save()
                                 }) {
                                     Label("Delete", systemImage: "x.circle")
                                 }
@@ -102,7 +103,7 @@ struct EntryView: View {
                             }
                         }.padding(.bottom)
                         HStack{
-                            Text(text).font(.subheadline)
+                            Text(text).font(.subheadline).fixedSize(horizontal: false, vertical: true)
                             Spacer()
                         }
                         
@@ -110,7 +111,7 @@ struct EntryView: View {
                     
                 Image(uiImage: image).resizable().aspectRatio(contentMode: .fill).cornerRadius(10.0).padding()
                 
-            }.foregroundColor(.white)
+            }.foregroundColor(.white).frame(width: UIScreen.main.bounds.width-30)
         }.padding()
     }
 }

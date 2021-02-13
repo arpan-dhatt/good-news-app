@@ -15,7 +15,7 @@ struct CategoricalView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(["One","Two"], id: \.self) {category in
+                ForEach(viewModel.user.categories, id: \.self) {category in
                     NavigationLink(destination: CategoryList(category: category).navigationBarTitle(category)) {
                         Text("\(category)")
                     }
