@@ -12,6 +12,7 @@ struct CategoryList: View {
     
     @StateObject var dataSource = FeedDataSource(.categorical)
     @State var presentingSafariView = false
+    @State var presentingShareView = false
     @State var currentURL = "https://bing.com"
     
     var category: String
@@ -20,7 +21,7 @@ struct CategoryList: View {
         ScrollView {
             LazyVStack {
                 ForEach(dataSource.items, id: \.self) { item in
-                    BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource).onAppear {
+                    BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, presentingShareView: $presentingShareView).onAppear {
                         dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user, category: category)
                     }.onTapGesture {
                         self.currentURL = item.article

@@ -7,31 +7,58 @@
 
 import SwiftUI
 
+enum ModifierChoice {
+    case categories
+    case sources
+}
+
 struct StringListModifierView: View {
-    @Binding var list: [String]
+    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var viewModel: ViewModel
+    
+    var choices: [String]
+    
+    var choice: ModifierChoice
     
     var body: some View {
-        VStack {
-            List {
-                ForEach(list, id: \.self) {item in
-                    Text(item)
+        VStack(spacing: 10) {
+                ForEach(choices, id: \.self) {item in
+                    HStack {
+                        Text(item)
+                        Spacer()
+                        if choice == .categories {
+                            Image(systemName: viewModel.user.categories.contains(item) ? "minus.circle.fill" : "plus.circle.fill").foregroundColor(viewModel.user.categories.contains(item) ? Color.red : Color.green).transition(.scale)
+                        } else {
+                            Image(systemName: viewModel.user.sources.contains(item) ? "minus.circle.fill" : "plus.circle.fill").foregroundColor(viewModel.user.sources.contains(item) ? Color.red : Color.green).transition(.scale)
+                        }
+                        
+                    }.padding().background(colorScheme == .light ? Color.white : Color.black).cornerRadius(10).padding(.horizontal, 4).shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
+                    .onTapGesture {
+                        withAnimation(.interpolatingSpring(stiffness: 0.1, damping: 0.1)) {
+                            if choice == .categories {
+                                if viewModel.user.categories.contains(item) {
+                                    viewModel.user.categories.remove(at: viewModel.user.categories.firstIndex(of: item)!)
+                                } else {
+                                    viewModel.user.categories.append(item)
+                                }
+                            } else {
+                                if viewModel.user.sources.contains(item) {
+                                    viewModel.user.sources.remove(at: viewModel.user.sources.firstIndex(of: item)!)
+                                } else {
+                                    viewModel.user.sources.append(item)
+                                }
+                            }
+                            
+                        }
+                    }
                 }
             }
-        }
-    }
-    
-    private func onDelete(offsets: IndexSet) {
-        list.remove(atOffsets: offsets)
-    }
-    
-    private func onAdd() {
-        list.append("hello")
     }
     
 }
 
 struct ListModifierView_Previews: PreviewProvider {
     static var previews: some View {
-        StringListModifierView(list: .constant(["one", "two", "three"]))
+        StringListModifierView(choices: ["Business", "Science", "Sports"], choice: .categories).environmentObject(ViewModel())
     }
 }

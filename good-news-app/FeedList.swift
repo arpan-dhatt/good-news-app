@@ -14,11 +14,13 @@ struct FeedList: View {
     @State var presentingSafariView = false
     @State var currentURL = "https://bing.com"
     
+    @State var presentingShareView = false
+    
     var body: some View {
         ScrollView {
             LazyVStack {
                 ForEach(dataSource.items, id: \.self) { item in
-                    BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource).onAppear {
+                    BasicNewsCard(title: item.title, subtitle: item.subtitle, article: item.article, date: item.date, description: item.description, thumbnail: item.thumbnail, categories: item.categories, dataSource: dataSource, presentingShareView: $presentingShareView).onAppear {
                         dataSource.loadMoreContentIfNeeded(currentItem: item, user: viewModel.user)
                     }.onTapGesture {
                         self.currentURL = item.article
@@ -33,7 +35,9 @@ struct FeedList: View {
             }
         }.sheet(isPresented: $presentingSafariView){
             WebView(viewModel: ViewModel())
-        }
+        }.sheet(isPresented: $presentingShareView, content: {
+            ShareSheetView(applicationActivities: nil)
+        })
     }
     
 }

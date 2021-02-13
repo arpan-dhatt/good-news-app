@@ -13,7 +13,15 @@ struct ProfileView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("\(viewModel.user.name)")
+                ScrollView {
+                    Text("\(viewModel.user.name)").font(.title)
+                    Divider()
+                    Text("Visible Categories").font(.headline)
+                    StringListModifierView(choices: ["Business","Sports","Weather"], choice: .categories)
+                    Divider()
+                    Text("Visible Sources").font(.headline)
+                    StringListModifierView(choices: ["Good News Network", "New York Times"], choice: .sources)
+                }
             }.navigationBarTitle("Profile")
         }
     }
@@ -21,6 +29,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView().environmentObject(ViewModel())
     }
 }

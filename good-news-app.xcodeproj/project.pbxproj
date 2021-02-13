@@ -31,6 +31,7 @@
 		784F8BB225D7C3E800CFC334 /* ListModifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BB125D7C3E800CFC334 /* ListModifierView.swift */; };
 		784F8BB425D81B3400CFC334 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BB325D81B3400CFC334 /* ImagePicker.swift */; };
 		784F8BB625D81B5800CFC334 /* OrderSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BB525D81B5800CFC334 /* OrderSheetView.swift */; };
+		784F8BB825D82AB500CFC334 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F8BB725D82AB500CFC334 /* ShareSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		784F8BB125D7C3E800CFC334 /* ListModifierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModifierView.swift; sourceTree = "<group>"; };
 		784F8BB325D81B3400CFC334 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		784F8BB525D81B5800CFC334 /* OrderSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSheetView.swift; sourceTree = "<group>"; };
+		784F8BB725D82AB500CFC334 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				784F8BB125D7C3E800CFC334 /* ListModifierView.swift */,
 				784F8BB325D81B3400CFC334 /* ImagePicker.swift */,
 				784F8BB525D81B5800CFC334 /* OrderSheetView.swift */,
+				784F8BB725D82AB500CFC334 /* ShareSheet.swift */,
 			);
 			path = "good-news-app";
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				6E14110825D7333E00883BEB /* InfoModel.swift in Sources */,
 				784F8BB025D7B8BC00CFC334 /* CategoryList.swift in Sources */,
 				784F8B9A25D7355F00CFC334 /* CategoricalView.swift in Sources */,
+				784F8BB825D82AB500CFC334 /* ShareSheet.swift in Sources */,
 				784F8B9F25D7365800CFC334 /* OnboardingView.swift in Sources */,
 				784F8BA425D73D7E00CFC334 /* ImageLoader.swift in Sources */,
 			);

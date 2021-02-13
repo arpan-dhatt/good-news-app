@@ -18,9 +18,12 @@ class ViewModel: ObservableObject {
         }
     }
     @Published var user: InfoModel.User
+    @Published var sharingURL: String
     
     //User Defaults
     init() {
+        self.sharingURL = "https://bing.com"
+        
         self.onboarding = UserDefaults.standard.bool(forKey: "onboarding")
         //self.user = UserDefaults.standard.object(forKey: "user") as? InfoModel.User ??
         self.user = InfoModel.User(name: "Arpan", sources: ["yes"], categories: ["one", "two"], suggestions: ["three", "four"])
@@ -28,6 +31,8 @@ class ViewModel: ObservableObject {
         self.user.sources = (UserDefaults.standard.array(forKey: "sources") as? [String]) ?? []
         self.user.categories = (UserDefaults.standard.array(forKey: "categories") as? [String]) ?? []
         self.user.suggestions = (UserDefaults.standard.array(forKey: "suggestions") as? [String]) ?? []
+        
+        
     }
     
     var webViewNavigationPublisher = PassthroughSubject<WebViewNavigation, Never>()
