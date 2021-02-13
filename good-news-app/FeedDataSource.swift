@@ -25,48 +25,62 @@ struct ArticleResponse: Decodable {
 }
 
 class FeedDataSource: ObservableObject {
-  @Published var items = [Article]()
-  @Published var isLoadingPage = false
-  private var currentPage = 1
-  private var canLoadMorePages = true
+    @Published var items = [Article]()
+    @Published var imageDict = [String: UIImage]()
+    @Published var isLoadingPage = false
+    private var currentPage = 1
+    private var canLoadMorePages = true
 
-  init() {
-    loadMoreContent()
-  }
-
-  func loadMoreContentIfNeeded(currentItem item: Article?) {
-    guard let item = item else {
-      loadMoreContent()
-      return
+    init() {
+        loadMoreContent()
     }
 
-    let thresholdIndex = items.index(items.endIndex, offsetBy: -5)
-    if items.firstIndex(where: { $0.uuid == item.uuid }) == thresholdIndex {
-      loadMoreContent()
-    }
-  }
+    func loadMoreContentIfNeeded(currentItem item: Article?) {
+        guard let item = item else {
+            loadMoreContent()
+            return
+        }
 
-  private func loadMoreContent() {
-    guard !isLoadingPage && canLoadMorePages else {
-      return
+        let thresholdIndex = items.index(items.endIndex, offsetBy: -5)
+        if items.firstIndex(where: { $0.uuid == item.uuid }) == thresholdIndex {
+          loadMoreContent()
+        }
     }
-
-    isLoadingPage = true
     
-    let url = URL(string: "http://66.169.166.210:8080/recommendations?sources=nytimes&categories=one,two&suggested=three,four&page=\(currentPage)")!
-    URLSession.shared.dataTaskPublisher(for: url)
-        .map(\.data)
-      .decode(type: ArticleResponse.self, decoder: JSONDecoder())
-      .receive(on: DispatchQueue.main)
-      .handleEvents(receiveOutput: { response in
-        self.canLoadMorePages = response.item_count == 10
-        self.isLoadingPage = false
-        self.currentPage += 1
-      })
-      .map({ response in
-        return self.items + response.items
-      })
-      .catch({ _ in Just(self.items) })
-        .assign(to: &$items)
-  }
+    private func addImageToDict(_ url_string: String) {
+        let url = URL(string: url_string)
+        
+        if let urlu = url {
+            if let data = try? Data(contentsOf: urlu) {
+                imageDict[url_string] = UIImage(data: data)
+            }
+        }
+    }
+    
+    private func loadMoreContent() {
+        guard !isLoadingPage && canLoadMorePages else {
+            return
+        }
+
+        isLoadingPage = true
+
+        let url = URL(string: "http://66.169.166.210:8080/recommendations?sources=nytimes&categories=one,two&suggested=three,four&page=\(currentPage)")!
+        URLSession.shared.dataTaskPublisher(for: url)
+            .map(\.data)
+          .decode(type: ArticleResponse.self, decoder: JSONDecoder())
+          .receive(on: DispatchQueue.main)
+          .handleEvents(receiveOutput: { response in
+            self.canLoadMorePages = response.item_count == 10
+            self.isLoadingPage = false
+            self.currentPage += 1
+            for item in response.items {
+                self.addImageToDict(item.thumbnail)
+            }
+          })
+          .map({ response in
+            return self.items + response.items
+          })
+          .catch({ _ in Just(self.items) })
+            .assign(to: &$items)
+    }
 }

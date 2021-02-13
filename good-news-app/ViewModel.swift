@@ -8,7 +8,7 @@
 import SwiftUI
 
 class ViewModel: ObservableObject {
-    @Published var model: InfoModel = InfoModel();
+    @Published var model = InfoModel();
     
     //Transition Variables
     @Published var onboarding: Bool {
