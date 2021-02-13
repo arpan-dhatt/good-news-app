@@ -28,7 +28,7 @@ class FeedDataSource: ObservableObject {
     @Published var items = [Article]()
     @Published var imageDict = [String: UIImage]()
     @Published var isLoadingPage = false
-    private var currentPage = 1
+    private var currentPage = 0
     private var canLoadMorePages = true
 
     init() {
@@ -41,7 +41,7 @@ class FeedDataSource: ObservableObject {
             return
         }
 
-        let thresholdIndex = items.index(items.endIndex, offsetBy: -5)
+        let thresholdIndex = items.index(items.endIndex, offsetBy: -1)
         if items.firstIndex(where: { $0.uuid == item.uuid }) == thresholdIndex {
           loadMoreContent()
         }
@@ -52,7 +52,9 @@ class FeedDataSource: ObservableObject {
         
         if let urlu = url {
             if let data = try? Data(contentsOf: urlu) {
-                imageDict[url_string] = UIImage(data: data)
+                if !imageDict.keys.contains(url_string) {
+                    imageDict[url_string] = UIImage(data: data)
+                }
             }
         }
     }
