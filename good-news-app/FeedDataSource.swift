@@ -12,6 +12,7 @@ struct Article: Decodable, Hashable {
     var title: String
     var subtitle: String
     var article: String
+    var body: String
     var date: String
     var description: String
     var thumbnail: String
@@ -43,6 +44,11 @@ class FeedDataSource: ObservableObject {
     
     init(_ type: OrderType, category: String = "") {
         orderType = type
+        loadMoreContent(user: ViewModel().user, category: category)
+    }
+    
+    func resetContent(category: String = "") {
+        items = [Article]()
         loadMoreContent(user: ViewModel().user, category: category)
     }
     
@@ -89,7 +95,7 @@ class FeedDataSource: ObservableObject {
 //            url_obj = URL(string: "http://66.169.166.210:8080/categorical?sources=n,n&category=n,n&page=\(currentPage)")
         }
         else {
-            url_obj = URL(string: "http://47.37.119.216:8000/categorical?sources=\(user.sources.joined(separator: ",").filter {c in c != " "}.lowercased())&category=\(category.lowercased())&page=\(currentPage)")
+            url_obj = URL(string: "http://47.37.119.216:8000/categorical?sources=\(user.sources.joined(separator: ",").filter {c in c != " "}.lowercased())&category=sports&page=\(currentPage)")
             print(url_obj?.absoluteURL)
 //            url_obj = URL(string: "http://66.169.166.210:8080/categorical?sources=n,n&category=n,n&page=\(currentPage)")
         }

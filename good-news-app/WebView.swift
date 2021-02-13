@@ -56,6 +56,7 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
     
     func updateUIView(_ webView: WKWebView, context: Context) {
         let url = URL(string: viewModel.currentURL)!
+        print("UPDATED WEBVIEW \(viewModel.currentURL)")
         webView.load(URLRequest(url: url))
     }
     

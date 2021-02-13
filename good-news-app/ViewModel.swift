@@ -25,7 +25,7 @@ class ViewModel: ObservableObject {
     init() {
         self.sharingURL = "https://bing.com"
         
-        self.onboarding = UserDefaults.standard.bool(forKey: "onboarding")
+        self.onboarding = true/*UserDefaults.standard.bool(forKey: "onboarding")*/
         //self.user = UserDefaults.standard.object(forKey: "user") as? InfoModel.User ??
         self.user = InfoModel.User(name: "Arpan", sources: ["yes"], categories: ["one", "two"], suggestions: ["three", "four"])
         self.user.name = UserDefaults.standard.string(forKey: "name") ?? "Arpan"
@@ -41,7 +41,7 @@ class ViewModel: ObservableObject {
     var showLoader = PassthroughSubject<Bool, Never>()
     var valuePublisher = PassthroughSubject<String, Never>()
     var currentMapCords = " "
-    var currentURL = "https://google.com"
+    @Published var currentURL = "https://gmail.com"
 }
 
 enum WebViewNavigation {

@@ -22,13 +22,19 @@ struct BasicNewsCard: View {
     
     @ObservedObject var dataSource: FeedDataSource
     
+    var allColors = [
+        "sports": Color.green,
+        "world": Color.purple,
+        "business": Color.orange,
+        "scitech": Color.pink
+    ]
+    
     @Binding var activeSheet: ActiveSheet?
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(title).font(.headline)
-                Text(subtitle).font(.subheadline)
+                Text(title).font(.headline).foregroundColor(allColors[categories[0].lowercased()] ?? .black)
                 Text(date).font(.footnote).foregroundColor(.gray)
             }.padding(.leading)
             Spacer()
@@ -36,20 +42,8 @@ struct BasicNewsCard: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(10)
-                .frame(width:100, height:100)
-        }.frame(width: UIScreen.main.bounds.width-30, height: 110, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).contextMenu {
-            Button(action: {
-                    print("do something")
-            }) {
-                Label("Bookmark", systemImage: "bookmark")
-            }
-            Button(action: {
-                viewModel.sharingURL = article
-                activeSheet = .share
-            }, label: {
-                Label("Share", systemImage: "square.and.arrow.up")
-            })
-        }
+                .frame(width:150, height:150)
+        }.frame(width: UIScreen.main.bounds.width-30, height: 110, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
     }
 }
 
