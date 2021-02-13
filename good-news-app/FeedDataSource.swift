@@ -8,14 +8,14 @@
 import SwiftUI
 import Combine
 
-struct Article: Decodable {
+struct Article: Decodable, Hashable {
     var title: String
     var subtitle: String
     var date: String
     var description: String
     var thumbnail: String
     var categories: [String]
-    var id: Int64
+    var uuid: Int64
 }
 
 struct ArticleResponse: Decodable {
@@ -40,7 +40,7 @@ class FeedDataSource: ObservableObject {
     }
 
     let thresholdIndex = items.index(items.endIndex, offsetBy: -5)
-    if items.firstIndex(where: { $0.id == item.id }) == thresholdIndex {
+    if items.firstIndex(where: { $0.uuid == item.uuid }) == thresholdIndex {
       loadMoreContent()
     }
   }
@@ -54,10 +54,11 @@ class FeedDataSource: ObservableObject {
     
     let url = URL(string: "http://66.169.166.210:8080/recommendations?sources=nytimes&categories=one,two&suggested=three,four&page=\(currentPage)")!
     URLSession.shared.dataTaskPublisher(for: url)
-      .map(\.data)
+        .map(\.data)
       .decode(type: ArticleResponse.self, decoder: JSONDecoder())
       .receive(on: DispatchQueue.main)
       .handleEvents(receiveOutput: { response in
+        print(response)
         self.canLoadMorePages = response.item_count == 10
         self.isLoadingPage = false
         self.currentPage += 1

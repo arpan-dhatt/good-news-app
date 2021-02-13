@@ -23,6 +23,7 @@ struct BasicNewsCard: View {
                 Text(subtitle).font(.subheadline)
                 Text(date).font(.footnote).foregroundColor(.gray)
             }
+            Spacer()
             ImageView(withURL: thumbnail).shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
         }.frame(width: UIScreen.main.bounds.width-30, height: 110, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
     }

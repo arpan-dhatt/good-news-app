@@ -12,7 +12,7 @@ struct FeedView: View {
     
     var body: some View {
         NavigationView {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/).navigationBarTitle("Feed").navigationBarItems(trailing: Button(action: {
+            FeedList().navigationBarTitle("Feed").navigationBarItems(trailing: Button(action: {
                 showProfileView.toggle()
             }) {
                 Label("Profile", systemImage: "person.circle.fill")
