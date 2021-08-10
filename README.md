@@ -1,4 +1,4 @@
-# GoodNewz (Best Overall HackHealth 2021)
+# GoodNewz (2nd Overall HackHealth 2021)
 1. [DevPost Article](https://devpost.com/software/goodnewz-7f9ge0)
 
 ## Inspiration
